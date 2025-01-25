@@ -26,7 +26,7 @@ const Slider = () => {
                 navigation={true}
                 thumbs={{ swiper: thumbsSwiper }}
                 modules={[FreeMode, Navigation, Thumbs]}
-                className="mySwiper2 w-full h-[80vh]"
+                className="mySwiper2 w-full h-[70vh]"
             >
                 <SwiperSlide>
                     <img className="w-full h-full object-cover" src={news1} />
@@ -81,6 +81,7 @@ const Slider = () => {
                     </div>
                 </SwiperSlide>
             </Swiper>
+
             <Swiper
                 onSwiper={setThumbsSwiper}
                 loop={true}
@@ -89,12 +90,12 @@ const Slider = () => {
                 freeMode={true}
                 watchSlidesProgress={true}
                 modules={[FreeMode, Navigation, Thumbs]}
-                className="mySwiper w-full h-[15vh] mt-4"
+                className="mySwiper w-full h-[10vh] mt-4"
             >
                 <SwiperSlide>
                     <img className="w-full h-full object-cover" src={news1} />
                     <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
-                        <h2 className="text-2xl font-bold">
+                        <h2 className="text-md font-semibold">
                             ChatGPT back online after outage which hit thousands
                             worldwide
                         </h2>
@@ -103,7 +104,7 @@ const Slider = () => {
                 <SwiperSlide>
                     <img className="w-full h-full object-cover" src={news1} />
                     <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
-                        <h2 className="text-2xl font-bold">
+                        <h2 className="text-md font-semibold">
                             ChatGPT back online after outage which hit thousands
                             worldwide
                         </h2>
@@ -112,7 +113,7 @@ const Slider = () => {
                 <SwiperSlide>
                     <img className="w-full h-full object-cover" src={news1} />
                     <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
-                        <h2 className="text-2xl font-bold">
+                        <h2 className="text-md font-semibold">
                             ChatGPT back online after outage which hit thousands
                             worldwide
                         </h2>
@@ -121,7 +122,7 @@ const Slider = () => {
                 <SwiperSlide>
                     <img className="w-full h-full object-cover" src={news1} />
                     <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
-                        <h2 className="text-2xl font-bold">
+                        <h2 className="text-md font-semibold">
                             ChatGPT back online after outage which hit thousands
                             worldwide
                         </h2>

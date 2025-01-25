@@ -3,11 +3,12 @@ import MainLayout from "../layouts/MainLayout";
 import Login from "../pages/Auth/Login";
 import SignUp from "../pages/Auth/SignUp";
 import Homepage from "../pages/Home/Homepage";
+import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        errorElement: <h2 className="text-4xl">404 Not found</h2>,
+        errorElement: <ErrorPage />,
         element: <MainLayout />,
         children: [
             {
