@@ -1,7 +1,7 @@
 // import Container from "../Container";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import avatarImg from "../assets/placeholder.jpg";
 import logo from "../assets/logo.png";
 import Container from "./common/Container";
@@ -11,6 +11,59 @@ const Navbar = () => {
     const { user, logOut } = useAuth();
     const [isOpen, setIsOpen] = useState(false);
 
+    const links = (
+        <>
+            <NavLink
+                to="/"
+                className={({ isActive }) =>
+                    `tab hover:underline ${isActive ? "text-primary" : ""}`
+                }
+            >
+                Home
+            </NavLink>
+            <NavLink
+                to="/add-article"
+                className={({ isActive }) =>
+                    `tab hover:underline ${isActive ? "text-primary" : ""}`
+                }
+            >
+                Add Articles
+            </NavLink>
+            <NavLink
+                to="/all-articles"
+                className={({ isActive }) =>
+                    `tab hover:underline ${isActive ? "text-primary" : ""}`
+                }
+            >
+                All Articles
+            </NavLink>
+            <NavLink
+                to="/subscription"
+                className={({ isActive }) =>
+                    `tab hover:underline ${isActive ? "text-primary" : ""}`
+                }
+            >
+                Subscription
+            </NavLink>
+            <NavLink
+                to="/my-articles"
+                className={({ isActive }) =>
+                    `tab hover:underline ${isActive ? "text-primary" : ""}`
+                }
+            >
+                My Articles
+            </NavLink>
+            <NavLink
+                to="/premium-articles"
+                className={({ isActive }) =>
+                    `tab hover:underline ${isActive ? "text-primary" : ""}`
+                }
+            >
+                Premium Articles
+            </NavLink>
+        </>
+    );
+
     return (
         <div className="fixed w-full bg-white z-10 shadow-sm">
             <div className="py-4 border-b-[1px]">
@@ -18,13 +71,13 @@ const Navbar = () => {
                     <div className="flex flex-row  items-center justify-between gap-3 md:gap-0">
                         {/* Logo */}
                         <Link to="/">
-                            <img
-                                src={logo}
-                                alt="logo"
-                                width="100"
-                                height="100"
-                            />
+                            <img className="w-10 h-10" src={logo} alt="logo" />{" "}
+                            <span className="text-indigo-600">InsightArc</span>
                         </Link>
+
+                        <div className="hidden md:flex flex-row gap-3">
+                            {links}
+                        </div>
                         {/* Dropdown Menu */}
                         <div className="relative">
                             <div className="flex flex-row items-center gap-3">
@@ -54,6 +107,10 @@ const Navbar = () => {
                             {isOpen && (
                                 <div className="absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm">
                                     <div className="flex flex-col cursor-pointer">
+                                        <div className="flex flex-col md:hidden gap-3">
+                                            {links}
+                                        </div>
+
                                         <Link
                                             to="/"
                                             className="block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold"
