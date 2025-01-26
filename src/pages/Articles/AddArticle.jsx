@@ -47,6 +47,7 @@ const AddArticle = () => {
             isPremium,
             image: imageUrl,
             articleUser,
+            viewCount: 0, // initially 0
         };
         console.table(article);
 

@@ -13,50 +13,42 @@ const Card = ({ article }) => {
         isPremium,
         userHasSubscription,
     } = article;
+    // console.log(article);
     const navigate = useNavigate();
 
     return (
-        <div
-            className={`col-span-1 cursor-pointer group shadow-xl p-3 rounded-xl ${
-                isPremium ? "bg-yellow-100" : "bg-white"
-            }`}
-        >
-            <div className="flex flex-col gap-2 w-full">
-                <div className="aspect-square w-full relative overflow-hidden rounded-xl">
-                    <img
-                        className="object-cover h-full w-full group-hover:scale-110 transition"
-                        src={image}
-                        alt={title}
-                    />
-                    <div className="absolute top-3 right-3"></div>
+        <div className="col-span-1 group shadow-xl p-3 rounded-xl flex flex-col justify-between gap-2 w-full">
+            <div className="aspect-square w-full relative overflow-hidden rounded-xl">
+                <img
+                    className="object-cover h-full w-full group-hover:scale-110 transition"
+                    src={image}
+                    alt={title}
+                />
+                <div className="absolute top-3 right-3 text-white">
+                    {isPremium && !userHasSubscription && (
+                        <span className="bg-orange-500 p-1 rounded">
+                            Premium
+                        </span>
+                    )}
                 </div>
-                <div className="font-semibold text-lg">{title}</div>
-                <div className="font-semibold text-lg">
-                    Publisher: {publisher}
-                </div>
-                <div className="text-gray-700">
+            </div>
+
+            <div className="flex-grow">
+                <h3 className="font-semibold text-lg">{title}</h3>
+                <p className="font-semibold text-md">Publisher: {publisher}</p>
+                <p className="text-gray-700 break-words">
                     {`${description.slice(0, 50)}...`}
-                </div>
-                <div className="font-medium text-md">
+                </p>
+                <h5 className="font-medium text-md">
                     {tags.map((tag, index) => (
                         <span key={index} className="mr-2">
                             #{tag}
                         </span>
                     ))}
-                </div>
-                {/* <button
-                        className={`mt-2 p-2 rounded ${
-                            isPremium && !userHasSubscription
-                                ? "bg-gray-300 cursor-not-allowed"
-                                : "bg-blue-500 text-white"
-                        }`}
-                        disabled={isPremium && !userHasSubscription}
-                    >
-                        {isPremium && !userHasSubscription
-                            ? "Subscribe to view"
-                            : "View Details"}
-                    </button> */}
+                </h5>
+            </div>
 
+            <div>
                 <Button
                     label={"Details"}
                     disabled={isPremium && !userHasSubscription}
@@ -75,8 +67,8 @@ Card.propTypes = {
         publisher: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
         tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-        // isPremium: PropTypes.bool.isRequired,
-        // userHasSubscription: PropTypes.bool.isRequired,
+        isPremium: PropTypes.bool,
+        // userHasSubscription: PropTypes.bool,
     }).isRequired,
 };
 

@@ -206,5 +206,7 @@ AddArticleForm.propTypes = {
     // setPublisher: PropTypes.func.isRequired,
     tags: PropTypes.array.isRequired,
     setTags: PropTypes.func.isRequired,
+    isPremium: PropTypes.bool,
+    setIsPremium: PropTypes.func,
 };
 export default AddArticleForm;

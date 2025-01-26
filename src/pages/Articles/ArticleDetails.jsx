@@ -1,11 +1,12 @@
 // import Container from "../../components/Shared/Container";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import { useEffect } from "react";
 import Container from "../../components/common/Container";
+import Heading from "../../components/common/Heading";
 
 const ArticleDetails = () => {
     const { id } = useParams();
@@ -34,8 +35,8 @@ const ArticleDetails = () => {
                     `${import.meta.env.VITE_API_URL}/articles/${id}/view`
                 );
                 queryClient.invalidateQueries(["article", id]);
-            } catch (error) {
-                console.error("Failed to update view count", error);
+            } catch (err) {
+                console.log("Failed to update view count", err);
             }
         };
 
@@ -53,6 +54,7 @@ const ArticleDetails = () => {
         publisher,
         tags,
         description,
+        viewCount,
         isPremium,
         userHasSubscription,
         articleUser,
@@ -64,23 +66,25 @@ const ArticleDetails = () => {
                 <title>{title} | InsightArc</title>
             </Helmet>
 
-            <div className="mx-auto flex flex-col lg:flex-row justify-between w-full gap-12">
-                {/* Header */}
-                <div className="flex flex-col gap-6 flex-1">
-                    <div>
-                        <div className="w-full overflow-hidden rounded-xl">
-                            <img
-                                className="object-cover w-full"
-                                src={image}
-                                alt="header image"
-                            />
-                        </div>
-                    </div>
+            <div className="w-full gap-12">
+                <div className="flex justify-between items-center">
+                    <Heading
+                        title={title}
+                        subtitle={`Publisher: ${publisher}`}
+                    />
+                    <p>Views: {viewCount}</p>
                 </div>
+                {/* Image */}
+                <div className="w-full h-72 overflow-hidden rounded-md my-8">
+                    <img
+                        className="object-cover w-full h-full"
+                        src={image}
+                        alt={title}
+                    />
+                </div>
+
                 <div className="md:gap-10 flex-1">
                     {/* article Info */}
-                    {/* <Heading title={name} subtitle={`Category: ${category}`} /> */}
-                    <hr className="my-6" />
                     <div className="text-lg font-light text-neutral-500">
                         {description}
                     </div>
