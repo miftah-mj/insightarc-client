@@ -11,7 +11,7 @@ const AddArticle = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
-    const [publisher, setPublisher] = useState(null);
+    // const [publisher, setPublisher] = useState(null);
     const [tags, setTags] = useState([]);
     const [imageUpload, setImageUpload] = useState({ name: "Choose File" });
     const [uploading, setUploading] = useState(false);
@@ -23,7 +23,7 @@ const AddArticle = () => {
 
         const form = e.target;
         const title = form.title.value;
-        // const publisher = form.publisher.value;
+        const publisher = form.publisher.value;
         // const tags = form.tags.value;
         const description = form.description.value;
         const image = form.image.files[0];
@@ -40,8 +40,8 @@ const AddArticle = () => {
         // Create article object
         const article = {
             title,
-            publisher: publisher.value,
-            tags: tags.map(tag => tag.value),
+            publisher,
+            tags: tags.map((tag) => tag.value),
             description,
             image: imageUrl,
             articleUser,
@@ -72,8 +72,6 @@ const AddArticle = () => {
                 imageUpload={imageUpload}
                 setImageUpload={setImageUpload}
                 uploading={uploading}
-                publisher={publisher}
-                setPublisher={setPublisher}
                 tags={tags}
                 setTags={setTags}
             />

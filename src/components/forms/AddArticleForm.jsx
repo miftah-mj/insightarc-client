@@ -2,19 +2,12 @@ import PropTypes from "prop-types";
 import { TbFidgetSpinner } from "react-icons/tb";
 import Select from "react-select";
 
-const publishers = [
-    { value: "publisher1", label: "Publisher 1" },
-    { value: "publisher2", label: "Publisher 2" },
-    { value: "publisher3", label: "Publisher 3" },
-    { value: "publisher4", label: "Publisher 4" },
-];
-
 const tagOptions = [
-    { value: 'technology', label: 'Technology' },
-    { value: 'science', label: 'Science' },
-    { value: 'business', label: 'Business' },
-    { value: 'entertainment', label: 'Entertainment' },
-    { value: 'health', label: 'Health' },
+    { value: "technology", label: "Technology" },
+    { value: "science", label: "Science" },
+    { value: "business", label: "Business" },
+    { value: "entertainment", label: "Entertainment" },
+    { value: "health", label: "Health" },
 ];
 
 const AddArticleForm = ({
@@ -22,8 +15,6 @@ const AddArticleForm = ({
     imageUpload,
     setImageUpload,
     uploading,
-    publisher,
-    setPublisher,
     tags,
     setTags,
 }) => {
@@ -53,7 +44,7 @@ const AddArticleForm = ({
                             />
                         </div>
                         {/* Publisher */}
-                        <div className="space-y-1 text-sm">
+                        {/* <div className="space-y-1 text-sm">
                             <label
                                 htmlFor="publisher"
                                 className="block text-gray-600 "
@@ -68,6 +59,25 @@ const AddArticleForm = ({
                                 className="w-full border border-indigo-300 focus:outline-indigo-500 rounded-md bg-white"
                                 required
                             />
+                        </div> */}
+
+                        <div className="space-y-1 text-sm">
+                            <label
+                                htmlFor="publisher"
+                                className="block text-gray-600 "
+                            >
+                                Publisher
+                            </label>
+                            <select
+                                required
+                                className="w-full px-4 py-3 border-lime-300 focus:outline-lime-500 rounded-md bg-white"
+                                name="publisher"
+                            >
+                                <option value="publisher1">publisher1</option>
+                                <option value="publisher2">publisher2</option>
+                                <option value="publisher3">publisher3</option>
+                                <option value="publisher4">publisher4</option>
+                            </select>
                         </div>
 
                         {/* Description */}
@@ -174,8 +184,8 @@ AddArticleForm.propTypes = {
     setImageUpload: PropTypes.func.isRequired,
     uploading: PropTypes.bool.isRequired,
     // publisher: PropTypes.object.isRequired,
-    setPublisher: PropTypes.func.isRequired,
-    // tags: PropTypes.array.isRequired,
+    // setPublisher: PropTypes.func.isRequired,
+    tags: PropTypes.array.isRequired,
     setTags: PropTypes.func.isRequired,
 };
 export default AddArticleForm;
