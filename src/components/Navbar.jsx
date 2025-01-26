@@ -30,12 +30,12 @@ const Navbar = () => {
                 Add Article
             </NavLink>
             <NavLink
-                to="/all-articles"
+                to="/articles"
                 className={({ isActive }) =>
                     `tab hover:underline ${isActive ? "text-primary" : ""}`
                 }
             >
-                All Articles
+                Articles
             </NavLink>
             <NavLink
                 to="/subscription"

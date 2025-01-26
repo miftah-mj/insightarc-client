@@ -5,7 +5,7 @@ import SignUp from "../pages/Auth/SignUp";
 import Homepage from "../pages/Home/Homepage";
 import ErrorPage from "../pages/ErrorPage";
 import AddArticle from "../pages/Articles/AddArticle";
-import AllArticles from "../pages/Articles/AllArticles";
+import Articles from "../pages/Articles/Articles";
 
 export const router = createBrowserRouter([
     {
@@ -22,8 +22,8 @@ export const router = createBrowserRouter([
                 element: <AddArticle />,
             },
             {
-                path: "all-articles",
-                element: <AllArticles />,
+                path: "articles",
+                element: <Articles />,
             },
         ],
     },
