@@ -6,6 +6,8 @@ import Homepage from "../pages/Home/Homepage";
 import ErrorPage from "../pages/ErrorPage";
 import AddArticle from "../pages/Articles/AddArticle";
 import Articles from "../pages/Articles/Articles";
+import ArticleDetails from "../pages/Articles/ArticleDetails";
+import Subscription from "../pages/Subscription/Subscription";
 
 export const router = createBrowserRouter([
     {
@@ -24,6 +26,14 @@ export const router = createBrowserRouter([
             {
                 path: "articles",
                 element: <Articles />,
+            },
+            {
+                path: "article/:id",
+                element: <ArticleDetails />,
+            },
+            {
+                path: "subscription",
+                element: <Subscription />,
             },
         ],
     },

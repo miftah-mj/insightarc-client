@@ -8,6 +8,7 @@ const Card = ({ article }) => {
         title,
         image,
         publisher,
+        tags,
         description,
         isPremium,
         userHasSubscription,
@@ -35,6 +36,13 @@ const Card = ({ article }) => {
                 </div>
                 <div className="text-gray-700">
                     {`${description.slice(0, 50)}...`}
+                </div>
+                <div className="font-medium text-md">
+                    {tags.map((tag, index) => (
+                        <span key={index} className="mr-2">
+                            #{tag}
+                        </span>
+                    ))}
                 </div>
                 {/* <button
                         className={`mt-2 p-2 rounded ${
@@ -66,6 +74,7 @@ Card.propTypes = {
         image: PropTypes.string.isRequired,
         publisher: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
+        tags: PropTypes.arrayOf(PropTypes.string).isRequired,
         // isPremium: PropTypes.bool.isRequired,
         // userHasSubscription: PropTypes.bool.isRequired,
     }).isRequired,

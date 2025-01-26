@@ -13,6 +13,7 @@ const AddArticle = () => {
     const navigate = useNavigate();
     // const [publisher, setPublisher] = useState(null);
     const [tags, setTags] = useState([]);
+    const [isPremium, setIsPremium] = useState(false);
     const [imageUpload, setImageUpload] = useState({ name: "Choose File" });
     const [uploading, setUploading] = useState(false);
 
@@ -43,6 +44,7 @@ const AddArticle = () => {
             publisher,
             tags: tags.map((tag) => tag.value),
             description,
+            isPremium,
             image: imageUrl,
             articleUser,
         };
@@ -74,6 +76,8 @@ const AddArticle = () => {
                 uploading={uploading}
                 tags={tags}
                 setTags={setTags}
+                isPremium={isPremium}
+                setIsPremium={setIsPremium}
             />
         </div>
     );
