@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import Button from "./common/Button";
+import { GiStarShuriken } from "react-icons/gi";
 
 const Card = ({ article }) => {
     const {
@@ -26,9 +27,13 @@ const Card = ({ article }) => {
                 />
                 <div className="absolute top-3 right-3 text-white">
                     {isPremium && !userHasSubscription && (
-                        <span className="bg-orange-500 p-1 rounded">
-                            Premium
-                        </span>
+                        <p className="flex items-center gap-1 bg-orange-500 p-1 rounded">
+                            <GiStarShuriken
+                                size={20}
+                                className="text-yellow-300"
+                            />
+                            <span className="">Premium</span>
+                        </p>
                     )}
                 </div>
             </div>

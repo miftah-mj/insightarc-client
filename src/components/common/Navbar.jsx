@@ -64,8 +64,8 @@ const Navbar = () => {
     );
 
     return (
-        <div className="bg-white z-10 shadow-sm">
-            <div className="max-w-screen-xl mx-auto py-4 border-b-[1px]">
+        <div className="border-b-2">
+            <div className="max-w-screen-xl mx-auto px-4 lg:px-0 py-4">
                 <div className="flex flex-row  items-center justify-between gap-3 md:gap-0">
                     {/* Logo */}
                     <Link to="/">
@@ -85,23 +85,25 @@ const Navbar = () => {
                                 <AiOutlineMenu />
                                 <div className="hidden md:block">
                                     {/* Avatar */}
-                                    <img
-                                        className="w-10 h-10 object-cover rounded-full"
-                                        referrerPolicy="no-referrer"
-                                        src={
-                                            user && user.photoURL
-                                                ? user.photoURL
-                                                : avatarImg
-                                        }
-                                        alt="profile"
-                                        height="30"
-                                        width="30"
-                                    />
+                                    <Link to="/profile">
+                                        <img
+                                            className="w-10 h-10 object-cover rounded-full"
+                                            referrerPolicy="no-referrer"
+                                            src={
+                                                user && user.photoURL
+                                                    ? user.photoURL
+                                                    : avatarImg
+                                            }
+                                            alt="profile"
+                                            height="30"
+                                            width="30"
+                                        />
+                                    </Link>
                                 </div>
                             </div>
                         </div>
                         {isOpen && (
-                            <div className="absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm">
+                            <div className="absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm z-10">
                                 <div className="flex flex-col cursor-pointer">
                                     <div className="flex flex-col md:hidden gap-3">
                                         {links}

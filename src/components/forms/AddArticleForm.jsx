@@ -73,7 +73,7 @@ const AddArticleForm = ({
                             </label>
                             <select
                                 required
-                                className="w-full px-4 py-3 border-lime-300 focus:outline-lime-500 rounded-md bg-white"
+                                className="w-full px-4 py-3 border-indigo-300 focus:outline-indigo-500 rounded-md bg-white"
                                 name="publisher"
                             >
                                 <option value="publisher1">publisher1</option>

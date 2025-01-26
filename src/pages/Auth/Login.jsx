@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { saveUser } from "../../api/utils";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
 
 const Login = () => {
     const { signIn, signInWithGoogle, loading, user } = useAuth();
@@ -11,7 +12,8 @@ const Login = () => {
     const location = useLocation();
     const from = location?.state?.from?.pathname || "/";
 
-    if (loading) return <div>Loading....</div>;
+    if (loading) return <LoadingSpinner />;
+
     if (user) return <Navigate to={from} replace={true} />;
     // form submit handler
     const handleSubmit = async (event) => {
@@ -75,7 +77,7 @@ const Login = () => {
                                 id="email"
                                 required
                                 placeholder="Enter Your Email Here"
-                                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900"
+                                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-indigo-500 bg-gray-200 text-gray-900"
                                 data-temp-mail-org="0"
                             />
                         </div>
@@ -95,7 +97,7 @@ const Login = () => {
                                 id="password"
                                 required
                                 placeholder="*******"
-                                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900"
+                                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-indigo-500 bg-gray-200 text-gray-900"
                             />
                         </div>
                     </div>
@@ -103,7 +105,7 @@ const Login = () => {
                     <div>
                         <button
                             type="submit"
-                            className="bg-lime-500 w-full rounded-md py-3 text-white"
+                            className="bg-indigo-500 w-full rounded-md py-3 text-white"
                         >
                             {loading ? (
                                 <TbFidgetSpinner className="animate-spin m-auto" />
@@ -114,7 +116,7 @@ const Login = () => {
                     </div>
                 </form>
                 <div className="space-y-1">
-                    <button className="text-xs hover:underline hover:text-lime-500 text-gray-400">
+                    <button className="text-xs hover:underline hover:text-indigo-500 text-gray-400">
                         Forgot password?
                     </button>
                 </div>
@@ -137,7 +139,7 @@ const Login = () => {
                     Don&apos;t have an account yet?{" "}
                     <Link
                         to="/signup"
-                        className="hover:underline hover:text-lime-500 text-gray-600"
+                        className="hover:underline hover:text-indigo-500 text-gray-600"
                     >
                         Sign up
                     </Link>
