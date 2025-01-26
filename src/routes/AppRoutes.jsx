@@ -10,8 +10,8 @@ import ArticleDetails from "../pages/Articles/ArticleDetails";
 import Subscription from "../pages/Subscription/Subscription";
 import PremiumArticles from "../pages/PremiumArticles";
 import Profile from "../pages/Profile/Profile";
-import UpdateProfile from "../pages/Profile/UpdateProfile";
 import PrivateRoute from "./PrivateRoute";
+import MyArticles from "../pages/Articles/MyArticles";
 
 export const router = createBrowserRouter([
     {
@@ -25,7 +25,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: "add-article",
-                element: <AddArticle />,
+                element: (
+                    <PrivateRoute>
+                        <AddArticle />
+                    </PrivateRoute>
+                ),
             },
             {
                 path: "articles",
@@ -56,10 +60,10 @@ export const router = createBrowserRouter([
                 ),
             },
             {
-                path: "update-profile",
+                path: "my-articles",
                 element: (
                     <PrivateRoute>
-                        <UpdateProfile />
+                        <MyArticles />
                     </PrivateRoute>
                 ),
             },

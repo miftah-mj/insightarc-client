@@ -70,7 +70,7 @@ const Navbar = () => {
                     {/* Logo */}
                     <Link to="/">
                         <img className="w-10 h-10" src={logo} alt="logo" />{" "}
-                        <span className="text-indigo-600">InsightArc</span>
+                        <span className="font-new-rocker">InsightArc</span>
                     </Link>
 
                     <div className="hidden md:flex flex-row gap-3">{links}</div>

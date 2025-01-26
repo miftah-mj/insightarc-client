@@ -19,7 +19,7 @@ const Profile = () => {
                 <img
                     alt="cover photo"
                     src={coverImg}
-                    className="w-full mb-4 rounded-t-lg h-56"
+                    className="w-full object-cover mb-4 rounded-t-lg h-56"
                 />
                 <div className="flex flex-col items-center justify-center p-4 -mt-16">
                     <a href="#" className="relative block">
@@ -52,10 +52,10 @@ const Profile = () => {
                             </p>
 
                             <div>
-                                <button className="bg-indigo-500 px-10 py-1 rounded-lg text-black cursor-pointer hover:bg-indigo-800 block mb-1">
+                                <button className="bg-indigo-500 px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-indigo-800 block mb-1">
                                     Update Profile
                                 </button>
-                                <button className="bg-indigo-500 px-7 py-1 rounded-lg text-black cursor-pointer hover:bg-indigo-800">
+                                <button className="bg-indigo-500 px-7 py-1 rounded-lg text-white cursor-pointer hover:bg-indigo-800">
                                     Change Password
                                 </button>
                             </div>
