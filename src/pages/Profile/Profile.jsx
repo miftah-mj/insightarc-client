@@ -2,20 +2,22 @@ import { Helmet } from "react-helmet-async";
 import coverImg from "../../assets/cover.avif";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import useAuth from "../../hooks/useAuth";
+import Container from "../../components/common/Container";
+import useRole from "../../hooks/useRole";
 
 const Profile = () => {
     const { user, loading } = useAuth();
-    console.log(user);
+    const [role, isLoading] = useRole();
 
-    if (loading) return <LoadingSpinner />;
+    if (loading || isLoading) return <LoadingSpinner />;
 
     return (
-        <div className="flex justify-center items-center h-screen">
+        <>
             <Helmet>
                 <title>{user?.displayName} | InsightArc</title>
             </Helmet>
 
-            <div className="bg-white shadow-lg rounded-2xl md:w-4/5 lg:w-3/5">
+            <Container>
                 <img
                     alt="cover photo"
                     src={coverImg}
@@ -30,9 +32,9 @@ const Profile = () => {
                         />
                     </a>
 
-                    {/* <p className="p-2 px-4 text-xs text-white bg-indigo-500 rounded-full">
+                    <p className="p-2 px-4 text-xs text-white bg-indigo-500 rounded-full capitalize">
                         {role}
-                    </p> */}
+                    </p>
                     <p className="mt-2 text-xl font-medium text-gray-800 ">
                         User Id: {user.uid}
                     </p>
@@ -51,7 +53,7 @@ const Profile = () => {
                                 </span>
                             </p>
 
-                            <div>
+                            <div className="flex flex-col">
                                 <button className="bg-indigo-500 px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-indigo-800 block mb-1">
                                     Update Profile
                                 </button>
@@ -62,8 +64,8 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </Container>
+        </>
     );
 };
 

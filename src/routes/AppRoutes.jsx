@@ -16,6 +16,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Statistics from "../pages/Dashboard/Statistics";
 import AllUsers from "../pages/Dashboard/AllUsers";
 import AllArticles from "../pages/Dashboard/AllArticles";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
     {
@@ -85,7 +86,9 @@ export const router = createBrowserRouter([
         path: "/dashboard",
         element: (
             <PrivateRoute>
-                <DashboardLayout />
+                <AdminRoute>
+                    <DashboardLayout />
+                </AdminRoute>
             </PrivateRoute>
         ),
         children: [

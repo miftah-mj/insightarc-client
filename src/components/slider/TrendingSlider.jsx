@@ -9,10 +9,31 @@ import "swiper/css/thumbs";
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 
-import news1 from "../../assets/trending-news-01.webp";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import LoadingSpinner from "../common/LoadingSpinner";
 
 const Slider = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+    const { data: articles = {}, isLoading } = useQuery({
+        queryKey: ["articles"],
+        queryFn: async () => {
+            const response = await axios.get(
+                `${import.meta.env.VITE_API_URL}/trending-articles`
+            );
+            return response.data;
+        },
+    });
+    console.log(articles);
+    if (isLoading) return <LoadingSpinner />;
+
+    const truncateDescription = (description) => {
+        const words = description.split(" ");
+        return words.length > 10
+            ? words.slice(0, 20).join(" ") + "..."
+            : description;
+    };
 
     return (
         <>
@@ -28,58 +49,22 @@ const Slider = () => {
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="mySwiper2 w-full h-[70vh]"
             >
-                <SwiperSlide>
-                    <img className="w-full h-full object-cover" src={news1} />
-                    <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
-                        <h2 className="text-2xl font-bold">
-                            ChatGPT back online after outage which hit thousands
-                            worldwide
-                        </h2>
-                        <p className="text-sm mt-2">
-                            The outage, which lasted for several hours, affected
-                            users across the globe.
-                        </p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img className="w-full h-full object-cover" src={news1} />
-                    <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
-                        <h2 className="text-2xl font-bold">
-                            ChatGPT back online after outage which hit thousands
-                            worldwide
-                        </h2>
-                        <p className="text-sm mt-2">
-                            The outage, which lasted for several hours, affected
-                            users across the globe.
-                        </p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img className="w-full h-full object-cover" src={news1} />
-                    <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
-                        <h2 className="text-2xl font-bold">
-                            ChatGPT back online after outage which hit thousands
-                            worldwide
-                        </h2>
-                        <p className="text-sm mt-2">
-                            The outage, which lasted for several hours, affected
-                            users across the globe.
-                        </p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img className="w-full h-full object-cover" src={news1} />
-                    <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
-                        <h2 className="text-2xl font-bold">
-                            ChatGPT back online after outage which hit thousands
-                            worldwide
-                        </h2>
-                        <p className="text-sm mt-2">
-                            The outage, which lasted for several hours, affected
-                            users across the globe.
-                        </p>
-                    </div>
-                </SwiperSlide>
+                {articles.map((article) => (
+                    <SwiperSlide key={article._id}>
+                        <img
+                            className="w-full h-full object-cover"
+                            src={article.image}
+                        />
+                        <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
+                            <h2 className="text-3xl font-bold text-center">
+                                {article.title}
+                            </h2>
+                            <p className="text-sm mt-2 w-9/12 text-center">
+                                {truncateDescription(article.description)}
+                            </p>
+                        </div>
+                    </SwiperSlide>
+                ))}
             </Swiper>
 
             <Swiper
@@ -92,42 +77,19 @@ const Slider = () => {
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="mySwiper w-full h-[10vh] mt-4"
             >
-                <SwiperSlide>
-                    <img className="w-full h-full object-cover" src={news1} />
-                    <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
-                        <h2 className="text-md font-semibold">
-                            ChatGPT back online after outage which hit thousands
-                            worldwide
-                        </h2>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img className="w-full h-full object-cover" src={news1} />
-                    <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
-                        <h2 className="text-md font-semibold">
-                            ChatGPT back online after outage which hit thousands
-                            worldwide
-                        </h2>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img className="w-full h-full object-cover" src={news1} />
-                    <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
-                        <h2 className="text-md font-semibold">
-                            ChatGPT back online after outage which hit thousands
-                            worldwide
-                        </h2>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img className="w-full h-full object-cover" src={news1} />
-                    <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
-                        <h2 className="text-md font-semibold">
-                            ChatGPT back online after outage which hit thousands
-                            worldwide
-                        </h2>
-                    </div>
-                </SwiperSlide>
+                {articles.map((article) => (
+                    <SwiperSlide key={article._id}>
+                        <img
+                            className="w-full h-full object-cover"
+                            src={article.image}
+                        />
+                        <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-4">
+                            <h2 className="text-md font-semibold">
+                                {article.title}
+                            </h2>
+                        </div>
+                    </SwiperSlide>
+                ))}
             </Swiper>
         </>
     );
