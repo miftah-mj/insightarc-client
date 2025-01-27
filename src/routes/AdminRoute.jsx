@@ -10,7 +10,7 @@ const AdminRoute = ({ children }) => {
     if (isLoading) return <LoadingSpinner />;
     if (role == "admin") return children;
     return (
-        <Navigate to="/dashboard" state={{ from: location }} replace="true" />
+        <Navigate to="/" state={{ from: location }} replace="true" />
     );
 };
 

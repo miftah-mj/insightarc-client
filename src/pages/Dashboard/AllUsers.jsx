@@ -5,7 +5,6 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import UserDataRow from "../../components/UserDataRow";
 
-
 const AllUsers = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
@@ -38,6 +37,12 @@ const AllUsers = () => {
                             <table className="min-w-full leading-normal">
                                 <thead>
                                     <tr>
+                                        <th
+                                            scope="col"
+                                            className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                                        >
+                                            Photo
+                                        </th>
                                         <th
                                             scope="col"
                                             className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"

@@ -3,9 +3,9 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import AddArticleForm from "../../components/forms/AddArticleForm";
-import { uploadImage } from "../../api/utils";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { uploadImage } from "../../api/utils";
 
 const AddArticle = () => {
     const { user } = useAuth();
@@ -48,6 +48,7 @@ const AddArticle = () => {
             author,
             viewCount: 0, // initially 0
             status: "pending",
+            createdAt: new Date().toISOString().split("T")[0], // get today's date
         };
         console.table(article);
 

@@ -6,7 +6,7 @@ import UpdateUserModal from "./modal/UpdateUserModal";
 
 const UserDataRow = ({ userData, refetch }) => {
     const axiosSecure = useAxiosSecure();
-    const { name, email, role } = userData || {};
+    const { name, email, photo, role } = userData || {};
     const [isOpen, setIsOpen] = useState(false);
 
     // Handle updating user role
@@ -28,6 +28,13 @@ const UserDataRow = ({ userData, refetch }) => {
 
     return (
         <tr>
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <img
+                    className="w-10 h-10 border rounded-full object-cover"
+                    src={photo}
+                    alt=""
+                />
+            </td>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <p className="text-gray-900 whitespace-no-wrap">{name}</p>
             </td>
