@@ -1,5 +1,6 @@
 import { FaUserAlt, FaDollarSign } from "react-icons/fa";
-import { BsFillCartPlusFill, BsFillHouseDoorFill } from "react-icons/bs";
+import { CgOrganisation } from "react-icons/cg";
+import { RiArticleFill } from "react-icons/ri";
 
 const AdminStatistics = () => {
     return (
@@ -22,32 +23,32 @@ const AdminStatistics = () => {
                         </h4>
                     </div>
                 </div>
-                {/* Total Orders */}
+                {/* Total Publishers */}
                 <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
                     <div
                         className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-blue-600 to-blue-400 text-white shadow-blue-500/40`}
                     >
-                        <BsFillCartPlusFill className="w-6 h-6 text-white" />
+                        <CgOrganisation className="w-6 h-6 text-white" />
                     </div>
                     <div className="p-4 text-right">
                         <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
-                            Total Orders
+                            Total Publishers
                         </p>
                         <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                            120
+                            12
                         </h4>
                     </div>
                 </div>
-                {/* Total Plants */}
+                {/* Total Articles */}
                 <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
                     <div
                         className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-pink-600 to-pink-400 text-white shadow-pink-500/40`}
                     >
-                        <BsFillHouseDoorFill className="w-6 h-6 text-white" />
+                        <RiArticleFill className="w-6 h-6 text-white" />
                     </div>
                     <div className="p-4 text-right">
                         <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
-                            Total Plants
+                            Total Articles
                         </p>
                         <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
                             120

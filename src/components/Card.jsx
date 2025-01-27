@@ -18,7 +18,7 @@ const Card = ({ article }) => {
                     alt={title}
                 />
                 <div className="absolute top-3 right-3 text-white">
-                    {/* {isPremium && !userHasSubscription && (
+                    {isPremium && (
                         <p className="flex items-center gap-1 bg-orange-500 p-1 rounded">
                             <GiStarShuriken
                                 size={20}
@@ -26,11 +26,7 @@ const Card = ({ article }) => {
                             />
                             <span className="">Premium</span>
                         </p>
-                    )} */}
-                    <p className="flex items-center gap-1 bg-orange-500 p-1 rounded">
-                        <GiStarShuriken size={20} className="text-yellow-300" />
-                        <span className="">Premium</span>
-                    </p>
+                    )}
                 </div>
             </div>
 

@@ -13,7 +13,6 @@ const AddArticle = () => {
     const navigate = useNavigate();
     // const [publisher, setPublisher] = useState(null);
     const [tags, setTags] = useState([]);
-    const [isPremium, setIsPremium] = useState(false);
     const [imageUpload, setImageUpload] = useState({ name: "Choose File" });
     const [uploading, setUploading] = useState(false);
 
@@ -48,6 +47,7 @@ const AddArticle = () => {
             image: imageUrl,
             author,
             viewCount: 0, // initially 0
+            status: "pending",
         };
         console.table(article);
 

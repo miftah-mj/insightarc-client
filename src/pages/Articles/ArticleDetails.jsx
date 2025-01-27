@@ -52,7 +52,6 @@ const ArticleDetails = () => {
         description,
         viewCount,
         isPremium,
-        userHasSubscription,
         author,
     } = article;
     // console.log(article);

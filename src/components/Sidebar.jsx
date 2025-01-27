@@ -25,14 +25,8 @@ const Sidebar = () => {
             {/* Small Screen Navbar */}
             <div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
                 <div className="block cursor-pointer p-4 font-bold">
-                    <Link to="/">
-                        <img
-                            // className='hidden md:block'
-                            src={logo}
-                            alt="logo"
-                            width="100"
-                            height="100"
-                        />
+                    <Link to="/" className="font-new-rocker text-xl">
+                        InsightArc
                     </Link>
                 </div>
 
@@ -51,15 +45,9 @@ const Sidebar = () => {
                 }  md:translate-x-0  transition duration-200 ease-in-out`}
             >
                 <div>
-                    <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-lime-100 mx-auto">
-                        <Link to="/">
-                            <img
-                                // className='hidden md:block'
-                                src={logo}
-                                alt="logo"
-                                width="100"
-                                height="100"
-                            />
+                    <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-indigo-100 mx-auto">
+                        <Link to="/" className="font-new-rocker text-2xl">
+                            InsightArc
                         </Link>
                     </div>
 
@@ -78,7 +66,7 @@ const Sidebar = () => {
                     <MenuItem
                         icon={FcSettings}
                         label="Profile"
-                        address="/dashboard/profile"
+                        address="/profile"
                     />
                     <button
                         onClick={logOut}

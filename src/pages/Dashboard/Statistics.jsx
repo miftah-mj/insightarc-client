@@ -7,8 +7,7 @@ import useRole from "../../hooks/useRole";
 const Statistics = () => {
     const [role, isLoading] = useRole();
 
-    if (role == "customer") return <Navigate to="/dashboard/my-orders" />;
-    if (role == "seller") return <Navigate to="/dashboard/my-inventory" />;
+    if (role == "user") return <Navigate to="/" />;
     if (isLoading) return <LoadingSpinner />;
 
     return (

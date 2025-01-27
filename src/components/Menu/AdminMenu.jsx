@@ -12,8 +12,13 @@ const AdminMenu = () => {
             />
             <MenuItem
                 icon={FaUserCog}
-                label="Manage Users"
-                address="manage-users"
+                label="All Users"
+                address="all-users"
+            />
+            <MenuItem
+                icon={FaUserCog}
+                label="All Articles"
+                address="all-articles"
             />
         </>
     );
