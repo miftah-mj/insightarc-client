@@ -108,7 +108,7 @@ const MyArticles = () => {
                                         Details
                                     </button>
                                     <button
-                                        className="text-green-500 mr-2"
+                                        className="text-indigo-500 mr-2"
                                         onClick={() =>
                                             handleUpdate(article._id)
                                         }
