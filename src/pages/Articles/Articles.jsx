@@ -4,8 +4,12 @@ import { useState } from "react";
 import Card from "../../components/Card";
 import Container from "../../components/common/Container";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
+import useAuth from "../../hooks/useAuth";
 
 const Articles = () => {
+    const { user } = useAuth();
+    console.log(user);
+
     const [searchTerm, setSearchTerm] = useState("");
 
     const { data: articles, isLoading } = useQuery({
@@ -17,6 +21,7 @@ const Articles = () => {
             return response.data;
         },
     });
+    
     if (isLoading) return <LoadingSpinner />;
 
     const handleSearch = (e) => {

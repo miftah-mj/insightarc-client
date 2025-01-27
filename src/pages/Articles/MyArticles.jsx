@@ -20,7 +20,7 @@ const MyArticles = () => {
         isLoading,
         refetch,
     } = useQuery({
-        queryKey: ["articles", user?.email],
+        queryKey: ["articles"],
         queryFn: async () => {
             const { data } = await axiosSecure(
                 `/user-articles`

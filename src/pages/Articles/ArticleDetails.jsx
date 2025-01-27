@@ -13,11 +13,7 @@ const ArticleDetails = () => {
     console.log(id);
     const queryClient = useQueryClient();
 
-    const {
-        data: article = {},
-        isLoading,
-        refetch,
-    } = useQuery({
+    const { data: article = {}, isLoading } = useQuery({
         queryKey: ["article", id],
         queryFn: async () => {
             const { data } = await axios(
@@ -57,70 +53,73 @@ const ArticleDetails = () => {
         viewCount,
         isPremium,
         userHasSubscription,
-        articleUser,
+        author,
     } = article;
+    // console.log(article);
 
     return (
-        <Container>
+        <>
             <Helmet>
                 <title>{title} | InsightArc</title>
             </Helmet>
 
-            <div className="w-full gap-12">
-                <div className="flex justify-between items-center">
-                    <Heading
-                        title={title}
-                        subtitle={`Publisher: ${publisher}`}
-                    />
-                    <p>Views: {viewCount}</p>
-                </div>
-                {/* Image */}
-                <div className="w-full h-72 overflow-hidden rounded-md my-8">
-                    <img
-                        className="object-cover w-full h-full"
-                        src={image}
-                        alt={title}
-                    />
-                </div>
-
-                <div className="md:gap-10 flex-1">
-                    {/* article Info */}
-                    <div className="text-lg font-light text-neutral-500">
-                        {description}
+            <Container>
+                <div className="w-full gap-12">
+                    <div className="flex justify-between items-center">
+                        <Heading
+                            title={title}
+                            subtitle={`Publisher: ${publisher}`}
+                        />
+                        <p>Views: {viewCount}</p>
                     </div>
-                    <hr className="my-6" />
-
-                    <div className="text-xl font-semibold flex flex-row items-center gap-2">
-                        <h4>Article Writter: {articleUser?.name}</h4>
+                    {/* Image */}
+                    <div className="w-full h-72 overflow-hidden rounded-md my-8">
                         <img
-                            className="rounded-full"
-                            height="30"
-                            width="30"
-                            alt="Avatar"
-                            referrerPolicy="no-referrer"
-                            src={articleUser?.image}
+                            className="object-cover w-full h-full"
+                            src={image}
+                            alt={title}
                         />
                     </div>
-                    <hr className="my-6" />
-                    <div>
-                        <p className="gap-4 font-light text-neutral-500">
-                            Publisher: {publisher}
-                        </p>
-                    </div>
-                    <div>
-                        <p className="gap-4 font-light text-neutral-500">
-                            <div className="font-semibold text-lg">
-                                {tags.map((tag, index) => (
-                                    <span key={index} className="mr-2">
-                                        #{tag}
-                                    </span>
-                                ))}
-                            </div>
-                        </p>
+
+                    <div className="md:gap-10 flex-1">
+                        {/* article Info */}
+                        <div className="text-lg font-light text-neutral-500">
+                            {description}
+                        </div>
+                        <hr className="my-6" />
+
+                        <div className="text-xl font-semibold flex flex-row items-center gap-2">
+                            <h4>Article Writter: {author?.name}</h4>
+                            <img
+                                className="rounded-full"
+                                height="30"
+                                width="30"
+                                alt="Avatar"
+                                referrerPolicy="no-referrer"
+                                src={author?.image}
+                            />
+                        </div>
+                        <hr className="my-6" />
+                        <div>
+                            <p className="gap-4 font-light text-neutral-500">
+                                Publisher: {publisher}
+                            </p>
+                        </div>
+                        <div>
+                            <p className="gap-4 font-light text-neutral-500">
+                                <div className="font-semibold text-lg">
+                                    {tags.map((tag, index) => (
+                                        <span key={index} className="mr-2">
+                                            #{tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </Container>
+            </Container>
+        </>
     );
 };
 

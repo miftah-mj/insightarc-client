@@ -12,6 +12,10 @@ import PremiumArticles from "../pages/PremiumArticles";
 import Profile from "../pages/Profile/Profile";
 import PrivateRoute from "./PrivateRoute";
 import MyArticles from "../pages/Articles/MyArticles";
+import DashboardLayout from "../layouts/DashboardLayout";
+import Statistics from "../pages/Dashboard/Statistics";
+import AllUsers from "../pages/Dashboard/AllUsers";
+import AllArticles from "../pages/Dashboard/AllArticles";
 
 export const router = createBrowserRouter([
     {
@@ -76,5 +80,39 @@ export const router = createBrowserRouter([
     {
         path: "/signup",
         element: <SignUp />,
+    },
+    {
+        path: "/dashboard",
+        element: (
+            <PrivateRoute>
+                <DashboardLayout />
+            </PrivateRoute>
+        ),
+        children: [
+            {
+                index: true,
+                element: (
+                    <PrivateRoute>
+                        <Statistics />
+                    </PrivateRoute>
+                ),
+            },
+            {
+                path: "all-users",
+                element: (
+                    <PrivateRoute>
+                        <AllUsers />
+                    </PrivateRoute>
+                ),
+            },
+            {
+                path: "all-articles",
+                element: (
+                    <PrivateRoute>
+                        <AllArticles />
+                    </PrivateRoute>
+                ),
+            },
+        ],
     },
 ]);

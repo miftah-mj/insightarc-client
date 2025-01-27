@@ -4,16 +4,8 @@ import Button from "./common/Button";
 import { GiStarShuriken } from "react-icons/gi";
 
 const Card = ({ article }) => {
-    const {
-        _id,
-        title,
-        image,
-        publisher,
-        tags,
-        description,
-        isPremium,
-        userHasSubscription,
-    } = article;
+    const { _id, title, image, publisher, tags, description, isPremium } =
+        article;
     // console.log(article);
     const navigate = useNavigate();
 
@@ -26,7 +18,7 @@ const Card = ({ article }) => {
                     alt={title}
                 />
                 <div className="absolute top-3 right-3 text-white">
-                    {isPremium && !userHasSubscription && (
+                    {/* {isPremium && !userHasSubscription && (
                         <p className="flex items-center gap-1 bg-orange-500 p-1 rounded">
                             <GiStarShuriken
                                 size={20}
@@ -34,7 +26,11 @@ const Card = ({ article }) => {
                             />
                             <span className="">Premium</span>
                         </p>
-                    )}
+                    )} */}
+                    <p className="flex items-center gap-1 bg-orange-500 p-1 rounded">
+                        <GiStarShuriken size={20} className="text-yellow-300" />
+                        <span className="">Premium</span>
+                    </p>
                 </div>
             </div>
 
@@ -56,7 +52,7 @@ const Card = ({ article }) => {
             <div>
                 <Button
                     label={"Details"}
-                    disabled={isPremium && !userHasSubscription}
+                    // disabled={isPremium && !userHasSubscription}
                     onClick={() => navigate(`/article/${_id}`)}
                 />
             </div>

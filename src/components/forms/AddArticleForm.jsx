@@ -17,8 +17,6 @@ const AddArticleForm = ({
     uploading,
     tags,
     setTags,
-    isPremium,
-    setIsPremium,
 }) => {
     return (
         <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50 p-4 lg:p-0">
@@ -164,7 +162,7 @@ const AddArticleForm = ({
                             </div>
                         )}
 
-                        <div className="space-y-1 text-sm flex flex-row-reverse items-start justify-start gap-2">
+                        {/* <div className="space-y-1 text-sm flex flex-row-reverse items-start justify-start gap-2">
                             <label
                                 htmlFor="isPremium"
                                 className="block text-gray-600"
@@ -177,7 +175,7 @@ const AddArticleForm = ({
                                 checked={isPremium}
                                 onChange={(e) => setIsPremium(e.target.checked)}
                             />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 

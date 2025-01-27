@@ -68,9 +68,8 @@ const Navbar = () => {
             <div className="max-w-screen-xl mx-auto px-4 lg:px-0 py-4">
                 <div className="flex flex-row  items-center justify-between gap-3 md:gap-0">
                     {/* Logo */}
-                    <Link to="/">
-                        <img className="w-10 h-10" src={logo} alt="logo" />{" "}
-                        <span className="font-new-rocker">InsightArc</span>
+                    <Link to="/" className="font-new-rocker text-2xl">
+                        InsightArc
                     </Link>
 
                     <div className="hidden md:flex flex-row gap-3">{links}</div>

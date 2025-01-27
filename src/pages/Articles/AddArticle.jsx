@@ -31,8 +31,8 @@ const AddArticle = () => {
         // Upload image
         const imageUrl = await uploadImage(image);
 
-        // articleUser Info
-        const articleUser = {
+        // author Info
+        const author = {
             name: user.displayName,
             image: user.photoURL,
             email: user.email,
@@ -44,9 +44,9 @@ const AddArticle = () => {
             publisher,
             tags: tags.map((tag) => tag.value),
             description,
-            isPremium,
+            isPremium: false,
             image: imageUrl,
-            articleUser,
+            author,
             viewCount: 0, // initially 0
         };
         console.table(article);
@@ -77,8 +77,6 @@ const AddArticle = () => {
                 uploading={uploading}
                 tags={tags}
                 setTags={setTags}
-                isPremium={isPremium}
-                setIsPremium={setIsPremium}
             />
         </div>
     );
