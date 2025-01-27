@@ -5,7 +5,8 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import DeleteModal from "./modal/DeleteModal";
 
 const AllArticlesDataRow = ({ article, refetch }) => {
-    const { title, author, status, publisher, createdAt, _id } = article || {};
+    const { title, author, status, publisher, createdAt, isPremium, _id } =
+        article || {};
     console.log(article);
 
     const axiosSecure = useAxiosSecure();
@@ -24,6 +25,21 @@ const AllArticlesDataRow = ({ article, refetch }) => {
             });
             refetch();
             toast.success("Status updated!");
+        } catch (err) {
+            console.log(err);
+            toast.error(err.response.data);
+        }
+    };
+
+    // Make premium article
+    const handleMakePremium = async () => {
+        if (isPremium) return;
+        try {
+            await axiosSecure.patch(`/articles/${_id}`, {
+                isPremium: true,
+            });
+            refetch();
+            toast.success("Article made premium!");
         } catch (err) {
             console.log(err);
             toast.error(err.response.data);
@@ -92,14 +108,6 @@ const AllArticlesDataRow = ({ article, refetch }) => {
                 <p className="text-gray-900 whitespace-no-wrap">{publisher}</p>
             </td>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                {/* <button
-                    onChange={(e) => handleStatusChange(e.target.value)}
-                    className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-lime-900 leading-tight"
-                >
-                    <span className="absolute cursor-pointer inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                    <span className="relative cursor-pointer">Approve</span>
-                </button> */}
-
                 <select
                     required
                     defaultValue={status}
@@ -121,15 +129,21 @@ const AllArticlesDataRow = ({ article, refetch }) => {
                 </button>
             </td>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                <button
-                    onClick={() => setIsOpen(true)}
-                    className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-lime-900 leading-tight"
-                >
-                    <span className="absolute cursor-pointer inset-0 bg-orange-200 opacity-50 rounded-full"></span>
-                    <span className="relative cursor-pointer">
-                        Make Premium
-                    </span>
-                </button>
+                {isPremium ? (
+                    <p className="text-indigo-600">Premium</p>
+                ) : (
+                    <>
+                        <button
+                            onClick={handleMakePremium}
+                            className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-lime-900 leading-tight"
+                        >
+                            <span className="absolute cursor-pointer inset-0 bg-orange-200 opacity-50 rounded-full"></span>
+                            <span className="relative cursor-pointer">
+                                Make Premium
+                            </span>
+                        </button>
+                    </>
+                )}
             </td>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <button
