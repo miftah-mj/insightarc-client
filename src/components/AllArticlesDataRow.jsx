@@ -6,12 +6,29 @@ import DeleteModal from "./modal/DeleteModal";
 
 const AllArticlesDataRow = ({ article, refetch }) => {
     const { title, author, status, publisher, createdAt, _id } = article || {};
-
     console.log(article);
+
     const axiosSecure = useAxiosSecure();
 
     let [isOpen, setIsOpen] = useState(false);
     const closeModal = () => setIsOpen(false);
+
+    // Update the status of the article
+    const handleStatusChange = async (newStatus) => {
+        if (status === newStatus) return;
+        console.log(newStatus);
+        // Update the status using patch request
+        try {
+            await axiosSecure.patch(`/articles/${_id}`, {
+                status: newStatus,
+            });
+            refetch();
+            toast.success("Status updated!");
+        } catch (err) {
+            console.log(err);
+            toast.error(err.response.data);
+        }
+    };
 
     // Delete a article
     const handleDelete = async () => {
@@ -75,13 +92,24 @@ const AllArticlesDataRow = ({ article, refetch }) => {
                 <p className="text-gray-900 whitespace-no-wrap">{publisher}</p>
             </td>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                <button
-                    onClick={() => setIsOpen(true)}
+                {/* <button
+                    onChange={(e) => handleStatusChange(e.target.value)}
                     className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-lime-900 leading-tight"
                 >
                     <span className="absolute cursor-pointer inset-0 bg-green-200 opacity-50 rounded-full"></span>
                     <span className="relative cursor-pointer">Approve</span>
-                </button>
+                </button> */}
+
+                <select
+                    required
+                    defaultValue={status}
+                    onChange={(e) => handleStatusChange(e.target.value)}
+                    className="p-1 border-2 border-lime-300 focus:outline-lime-500 rounded-md text-gray-900 whitespace-no-wrap bg-white"
+                    name="category"
+                >
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                </select>
             </td>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <button
