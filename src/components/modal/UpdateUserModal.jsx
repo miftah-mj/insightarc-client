@@ -18,7 +18,7 @@ const roles = ["user", "admin"];
 
 const UpdateUserModal = ({ setIsOpen, isOpen, role, updateRole }) => {
     const [selected, setSelected] = useState(role);
-    console.log(selected);
+    // console.log(selected);
 
     return (
         <Transition appear show={isOpen} as={Fragment}>

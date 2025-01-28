@@ -215,7 +215,7 @@ AddArticleForm.propTypes = {
     imageUpload: PropTypes.object,
     setImageUpload: PropTypes.func.isRequired,
     uploading: PropTypes.bool.isRequired,
-    publisher: PropTypes.object.isRequired,
+    publisher: PropTypes.object,
     setPublisher: PropTypes.func.isRequired,
     tags: PropTypes.array.isRequired,
     setTags: PropTypes.func.isRequired,

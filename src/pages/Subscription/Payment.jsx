@@ -7,6 +7,7 @@ import CheckoutForm from "../../components/Form/CheckoutForm";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
@@ -49,26 +50,35 @@ const Payment = () => {
     };
 
     return (
-        <Container>
-            <div className="flex flex-col items-center justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
-                <div className="w-full max-w-md space-y-8">
-                    <div>
-                        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                            Complete Your Payment
-                        </h2>
-                        <p className="mt-2 text-center text-sm text-gray-600">
-                            You have selected the {subscriptionPeriod}{" "}
-                            subscription period.
-                        </p>
+        <>
+            <Helmet>
+                <title>Payment | InsightArc</title>
+            </Helmet>
+
+            <Container>
+                <div className="flex flex-col items-center justify-center py-12 bg-gray-50 sm:px-6 lg:px-8">
+                    <div className="w-full max-w-md space-y-8">
+                        <div>
+                            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                                Complete Your Payment
+                            </h2>
+                            <p className="mt-2 text-center text-sm text-gray-600">
+                                You have selected the{" "}
+                                <span className="text-indigo-500">
+                                    {subscriptionPeriod}
+                                </span>{" "}
+                                subscription period.
+                            </p>
+                        </div>
+                        <Elements stripe={stripePromise}>
+                            <CheckoutForm
+                                handlePaymentSuccess={handlePaymentSuccess}
+                            />
+                        </Elements>
                     </div>
-                    <Elements stripe={stripePromise}>
-                        <CheckoutForm
-                            handlePaymentSuccess={handlePaymentSuccess}
-                        />
-                    </Elements>
                 </div>
-            </div>
-        </Container>
+            </Container>
+        </>
     );
 };
 

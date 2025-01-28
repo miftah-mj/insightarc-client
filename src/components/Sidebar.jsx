@@ -25,7 +25,7 @@ const Sidebar = () => {
             {/* Small Screen Navbar */}
             <div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
                 <div className="block cursor-pointer p-4 font-bold">
-                    <Link to="/" className="font-new-rocker text-xl">
+                    <Link to="/" className="font-new-rocker text-2xl">
                         InsightArc
                     </Link>
                 </div>

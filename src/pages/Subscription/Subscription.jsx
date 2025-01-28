@@ -33,16 +33,14 @@ const Subscription = () => {
             <Helmet>
                 <title>Subscription | InsightArc</title>
             </Helmet>
-
+            {/* Banner */}
+            <div className="relative w-full h-64 bg-indigo-600 flex items-center justify-center">
+                <h1 className="text-5xl font-bold text-white">
+                    Subscribe Now! ✨🚀
+                </h1>
+            </div>
             <Container>
-                {/* Banner */}
-                <div className="relative w-full h-64 bg-indigo-600 flex items-center justify-center">
-                    <h1 className="text-5xl font-bold text-white">
-                        Subscribe Now! ✨🚀
-                    </h1>
-                </div>
-
-                <div className="mt-8 text-center">
+                <div className="text-center">
                     <h2 className="text-4xl font-bold">Choose Your Plan</h2>
                     <p className="mt-4">
                         Select a subscription plan that suits you best.

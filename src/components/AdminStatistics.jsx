@@ -1,8 +1,24 @@
 import { FaUserAlt, FaDollarSign } from "react-icons/fa";
 import { CgOrganisation } from "react-icons/cg";
 import { RiArticleFill } from "react-icons/ri";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import LoadingSpinner from "./common/LoadingSpinner";
 
 const AdminStatistics = () => {
+    const { data: stat = {}, isLoading } = useQuery({
+        queryKey: ["stat"],
+        queryFn: async () => {
+            const response = await axios(
+                `${import.meta.env.VITE_API_URL}/users-stat`
+            );
+            return response.data;
+        },
+    });
+    console.log("stat", stat);
+    const { totalUsers } = stat || {};
+    if (isLoading) return <LoadingSpinner />;
+
     return (
         <div className="mt-12">
             {/* small cards */}
@@ -19,7 +35,7 @@ const AdminStatistics = () => {
                             Total Revenue
                         </p>
                         <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                            $120
+                            $155
                         </h4>
                     </div>
                 </div>
@@ -35,7 +51,7 @@ const AdminStatistics = () => {
                             Total Publishers
                         </p>
                         <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                            12
+                            13
                         </h4>
                     </div>
                 </div>
@@ -67,7 +83,7 @@ const AdminStatistics = () => {
                             Total User
                         </p>
                         <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                            10
+                            {totalUsers}
                         </h4>
                     </div>
                 </div>
