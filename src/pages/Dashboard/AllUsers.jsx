@@ -28,7 +28,7 @@ const AllUsers = () => {
         <>
             <div className="container mx-auto px-4 sm:px-8">
                 <Helmet>
-                    <title>Manage Users | PlantNet</title>
+                    <title>All Users | Dashboard | InsightArc</title>
                 </Helmet>
 
                 <div className="py-8">

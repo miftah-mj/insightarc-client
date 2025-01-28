@@ -2,8 +2,9 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../hooks/useAxiosSecure";
-import DeleteModal from "./modal/DeleteModal";
 import { Link } from "react-router-dom";
+import UpdateArticleModal from "./modal/UpdateArticleModal";
+import DeleteModal from "./modal/DeleteModal";
 
 const MyArticlesDataRow = ({ articles, article, refetch }) => {
     const { title, status, publisher, isPremium, _id } = article || {};
@@ -11,8 +12,17 @@ const MyArticlesDataRow = ({ articles, article, refetch }) => {
 
     const axiosSecure = useAxiosSecure();
 
+    // delete modal
     let [isOpen, setIsOpen] = useState(false);
-    const closeModal = () => setIsOpen(false);
+    //update modal
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+    function openModal() {
+        setIsOpen(true);
+    }
+    function closeModal() {
+        setIsOpen(false);
+    }
 
     // Delete a article
     const handleDelete = async () => {
@@ -73,23 +83,22 @@ const MyArticlesDataRow = ({ articles, article, refetch }) => {
 
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <button
-                    // onClick={() => setIsOpen(true)}
-                    className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-lime-900 leading-tight"
+                    onClick={() => setIsEditModalOpen(true)}
+                    className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-indigo-900 leading-tight"
                 >
                     <span className="absolute cursor-pointer inset-0 bg-blue-200 opacity-50 rounded-full"></span>
                     <span className="relative cursor-pointer">Update</span>
                 </button>
-
-                {/* <DeleteModal
-                    isOpen={isOpen}
-                    closeModal={closeModal}
-                    handleDelete={handleDelete}
-                /> */}
+                {/* Update Modal */}
+                <UpdateArticleModal
+                    isOpen={isEditModalOpen}
+                    setIsEditModalOpen={setIsEditModalOpen}
+                />
             </td>
             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <button
-                    onClick={() => setIsOpen(true)}
-                    className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-lime-900 leading-tight"
+                    onClick={openModal}
+                    className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-indigo-900 leading-tight"
                 >
                     <span className="absolute cursor-pointer inset-0 bg-red-200 opacity-50 rounded-full"></span>
                     <span className="relative cursor-pointer">Delete</span>
