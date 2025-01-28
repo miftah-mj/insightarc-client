@@ -2,12 +2,30 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import Button from "./common/Button";
 import { GiStarShuriken } from "react-icons/gi";
+import useAuth from "../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const Card = ({ article }) => {
     const { _id, title, image, publisher, tags, description, isPremium } =
         article;
     console.log(article);
     const navigate = useNavigate();
+
+    const { user } = useAuth();
+    // const axiosSecure = useAxiosSecure();
+
+    const { data: userData = {} } = useQuery({
+        queryKey: ["userData"],
+        queryFn: async () => {
+            const response = await axios(
+                `${import.meta.env.VITE_API_URL}/users/${user?.email}`
+            );
+            return response.data;
+        },
+    });
+    console.log(userData);
+    const { userHasSubscription } = userData;
 
     return (
         <div className="col-span-1 group shadow-xl p-3 rounded-xl flex flex-col justify-between gap-2 w-full">
@@ -32,7 +50,9 @@ const Card = ({ article }) => {
 
             <div className="flex-grow">
                 <h3 className="font-semibold text-lg">{title}</h3>
-                <p className="font-semibold text-md">Publisher: {publisher.publisherName}</p>
+                <p className="font-semibold text-md">
+                    Publisher: {publisher.publisherName}
+                </p>
                 <p className="text-gray-700 break-words">
                     {`${description.slice(0, 50)}...`}
                 </p>
@@ -48,7 +68,7 @@ const Card = ({ article }) => {
             <div>
                 <Button
                     label={"Details"}
-                    // disabled={isPremium && !userHasSubscription}
+                    disabled={isPremium && !userHasSubscription}
                     onClick={() => navigate(`/article/${_id}`)}
                 />
             </div>

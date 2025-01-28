@@ -17,7 +17,6 @@ const Articles = () => {
             return response.data;
         },
     });
-
     if (isLoading) return <LoadingSpinner />;
 
     const handleSearch = (e) => {

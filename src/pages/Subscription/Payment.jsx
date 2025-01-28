@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 const Payment = () => {
-    const { user, setUser } = useAuth();
+    const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
     const location = useLocation();
