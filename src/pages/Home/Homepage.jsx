@@ -1,10 +1,27 @@
+import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import { useNavigate } from "react-router-dom";
 import TrendingSlider from "../../components/slider/TrendingSlider";
 import AllPublishers from "../../components/Home/AllPublishers";
 import UserStatistics from "../../components/Home/UserStatistics";
 import Plans from "../../components/Home/Plans";
 
 const Homepage = () => {
+    const [showModal, setShowModal] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowModal(true);
+        }, 10000); // 10 seconds
+
+        return () => clearTimeout(timer); // Cleanup the timer on component unmount
+    }, []);
+
+    const handleSubscribeClick = () => {
+        navigate("/subscription");
+    };
+
     return (
         <div>
             <Helmet>
@@ -15,6 +32,26 @@ const Homepage = () => {
             <AllPublishers />
             <UserStatistics />
             <Plans />
+
+            {showModal && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
+                    <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                        <h2 className="text-2xl font-bold mb-4">
+                            Subscribe Now!
+                        </h2>
+                        <p className="mb-4">
+                            Get access to premium content by subscribing to our
+                            plans.
+                        </p>
+                        <button
+                            onClick={handleSubscribeClick}
+                            className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+                        >
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

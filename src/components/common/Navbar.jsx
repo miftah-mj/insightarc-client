@@ -22,10 +22,10 @@ const Navbar = () => {
         },
     });
     console.log(userData);
-    if (isLoading) return <LoadingSpinner />;
     const { userHasSubscription, role } = userData || {};
     console.log("userHasSubscription", userHasSubscription);
     console.log("role", role);
+    if (isLoading) return <LoadingSpinner />;
 
     const links = (
         <>
