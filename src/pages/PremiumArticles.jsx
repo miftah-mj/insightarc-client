@@ -3,6 +3,7 @@ import LoadingSpinner from "../components/common/LoadingSpinner";
 import Container from "../components/common/Container";
 import Card from "../components/Card";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const PremiumArticles = () => {
     const axiosSecure = useAxiosSecure();
@@ -19,19 +20,24 @@ const PremiumArticles = () => {
     if (isLoading) return <LoadingSpinner />;
 
     return (
-        <Container>
-            {articles && articles.length > 0 ? (
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    {articles.map((article) => (
-                        <Card key={article._id} article={article} />
-                    ))}
-                </div>
-            ) : (
-                <div className="text-center text-lg text-gray-500 mt-12">
-                    No articles found
-                </div>
-            )}
-        </Container>
+        <>
+            <Helmet>
+                <title>Premium Articles | InsightArc</title>
+            </Helmet>
+            <Container>
+                {articles && articles.length > 0 ? (
+                    <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        {articles.map((article) => (
+                            <Card key={article._id} article={article} />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center text-lg text-gray-500 mt-12">
+                        No articles found
+                    </div>
+                )}
+            </Container>
+        </>
     );
 };
 
