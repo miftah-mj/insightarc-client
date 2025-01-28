@@ -1,46 +1,22 @@
-import { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import axios from "axios";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../common/LoadingSpinner";
 import Container from "../common/Container";
+import { useQuery } from "@tanstack/react-query";
 
 const UserStatistics = () => {
-    const [userCounts, setUserCounts] = useState({
-        allUsers: 0,
-        normalUsers: 0,
-        premiumUsers: 0,
+    const { data: stat = {}, isLoading } = useQuery({
+        queryKey: ["stat"],
+        queryFn: async () => {
+            const response = await axios(
+                `${import.meta.env.VITE_API_URL}/users-stat`
+            );
+            return response.data;
+        },
     });
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchUserCounts = async () => {
-            try {
-                const response = await axios.get(
-                    `${import.meta.env.VITE_API_URL}/all-users`
-                );
-                const users = response.data;
-
-                const allUsers = users.length;
-                const normalUsers = users.filter(
-                    (user) => !user?.userHasSubscription
-                ).length;
-                const premiumUsers = users.filter(
-                    (user) => user?.userHasSubscription
-                ).length;
-
-                setUserCounts({ allUsers, normalUsers, premiumUsers });
-                setUserCounts({ allUsers });
-                setIsLoading(false);
-            } catch (error) {
-                console.error("Error fetching user statistics:", error);
-                setIsLoading(false);
-            }
-        };
-
-        fetchUserCounts();
-    }, []);
-
+    console.log("stat", stat);
+    const { totalUsers, normalUsers, premiumUsers } = stat || {};
     if (isLoading) return <LoadingSpinner />;
 
     return (
@@ -49,25 +25,25 @@ const UserStatistics = () => {
                 <div className="bg-white p-4 rounded-lg shadow-md text-center">
                     <h2 className="text-4xl font-bold">Users</h2>
                     <CountUp
-                        end={userCounts.allUsers}
+                        end={totalUsers}
                         duration={2.5}
-                        className="text-3xl font-bold text-indigo-500"
+                        className="text-3xl font-bold text-green-500"
                     />
                 </div>
                 <div className="bg-white p-4 rounded-lg shadow-md text-center">
-                    <h2 className="text-xl font-semibold">Normal Users</h2>
+                    <h2 className="text-4xl font-bold">Normal Users</h2>
                     <CountUp
-                        end={userCounts.normalUsers}
+                        end={normalUsers}
                         duration={2.5}
-                        className="text-3xl font-bold"
+                        className="text-3xl font-bold text-orange-500"
                     />
                 </div>
                 <div className="bg-white p-4 rounded-lg shadow-md text-center">
-                    <h2 className="text-xl font-semibold">Premium Users</h2>
+                    <h2 className="text-3xl font-bold">Premium Users</h2>
                     <CountUp
-                        end={userCounts.premiumUsers}
+                        end={premiumUsers}
                         duration={2.5}
-                        className="text-3xl font-bold"
+                        className="text-4xl font-bold text-indigo-500"
                     />
                 </div>
             </div>
