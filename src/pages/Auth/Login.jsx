@@ -3,18 +3,26 @@ import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import { TbFidgetSpinner } from "react-icons/tb";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { saveUser } from "../../api/utils";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import Navbar from "../../components/common/Navbar";
+import { useState } from "react";
 
 const Login = () => {
     const { signIn, signInWithGoogle, loading, user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || "/";
+    const [showPassword, setShowPassword] = useState(false);
 
     if (loading) return <LoadingSpinner />;
     if (user) return <Navigate to={from} replace={true} />;
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
     // form submit handler
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -92,15 +100,29 @@ const Login = () => {
                                         Password
                                     </label>
                                 </div>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    autoComplete="current-password"
-                                    id="password"
-                                    required
-                                    placeholder="*******"
-                                    className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-indigo-500 bg-gray-200 text-gray-900"
-                                />
+                                <div className="relative">
+                                    <input
+                                        type={
+                                            showPassword ? "text" : "password"
+                                        }
+                                        name="password"
+                                        autoComplete="new-password"
+                                        id="password"
+                                        required
+                                        placeholder="*******"
+                                        className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-indigo-500 bg-gray-200 text-gray-900"
+                                    />
+                                    <div
+                                        className="absolute inset-y-5 right-0 pr-3 flex items-center cursor-pointer"
+                                        onClick={togglePasswordVisibility}
+                                    >
+                                        {showPassword ? (
+                                            <AiFillEyeInvisible size={24} />
+                                        ) : (
+                                            <AiFillEye size={24} />
+                                        )}
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

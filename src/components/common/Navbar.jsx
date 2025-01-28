@@ -6,12 +6,13 @@ import avatarImg from "../../assets/placeholder.jpg";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
     const [isOpen, setIsOpen] = useState(false);
 
-    const { data: userData = {} } = useQuery({
+    const { data: userData = {}, isLoading } = useQuery({
         queryKey: ["userData"],
         queryFn: async () => {
             const response = await axios(
@@ -21,6 +22,7 @@ const Navbar = () => {
         },
     });
     console.log(userData);
+    if (isLoading) return <LoadingSpinner />;
     const { userHasSubscription, role } = userData || {};
     console.log("userHasSubscription", userHasSubscription);
     console.log("role", role);

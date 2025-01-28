@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
@@ -10,8 +12,34 @@ const SignUp = () => {
     const { createUser, updateUserProfile, signInWithGoogle, loading } =
         useAuth();
     const navigate = useNavigate();
-    // if (loading) return <LoadingSpinner />;
-    // form submit handler
+    const [errors, setErrors] = useState({});
+    const [passwordError, setPasswordError] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const validatePassword = (password) => {
+        const errors = {};
+        if (password.length < 6) {
+            errors.length = "Password must be at least 6 characters long.";
+        }
+        if (!/[A-Z]/.test(password)) {
+            errors.capital =
+                "Password must contain at least one capital letter.";
+        }
+        if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+            errors.special =
+                "Password must contain at least one special character.";
+        }
+        if (!/[0-9]/.test(password)) {
+            errors.numeric =
+                "Password must contain at least one numeric character.";
+        }
+        return errors;
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const form = event.target;
@@ -20,6 +48,20 @@ const SignUp = () => {
         const password = form.password.value;
         const image = form.image.files[0];
         console.log(image);
+
+        // Validate Password
+        const passwordErrors = validatePassword(password);
+
+        if (Object.keys(passwordErrors).length > 0) {
+            setErrors(passwordErrors);
+            toast.error(
+                "Password is not correct. Please write correct password!!"
+            );
+            return;
+        }
+
+        // Clear password error if validation passes
+        setPasswordError("");
 
         // Upload Image
         const photoUrl = await uploadImage(image);
@@ -34,8 +76,8 @@ const SignUp = () => {
             // Save user in database
             await saveUser({ ...result.user, displayName: name, photoUrl });
 
-            navigate("/");
             toast.success("Signup Successful");
+            navigate("/");
         } catch (err) {
             console.log(err);
             toast.error(err?.message);
@@ -50,8 +92,8 @@ const SignUp = () => {
             // Save user in database
             await saveUser(data?.user);
 
-            navigate("/");
             toast.success("Signup Successful");
+            navigate("/");
         } catch (err) {
             console.log(err);
             toast.error(err?.message);
@@ -134,18 +176,56 @@ const SignUp = () => {
                                         Password
                                     </label>
                                 </div>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    autoComplete="new-password"
-                                    id="password"
-                                    required
-                                    placeholder="*******"
-                                    className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-indigo-500 bg-gray-200 text-gray-900"
-                                />
+                                <div className="relative">
+                                    <input
+                                        type={
+                                            showPassword ? "text" : "password"
+                                        }
+                                        name="password"
+                                        autoComplete="new-password"
+                                        id="password"
+                                        required
+                                        placeholder="*******"
+                                        className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-indigo-500 bg-gray-200 text-gray-900"
+                                    />
+                                    <div
+                                        className="absolute inset-y-5 right-0 pr-3 flex items-center cursor-pointer"
+                                        onClick={togglePasswordVisibility}
+                                    >
+                                        {showPassword ? (
+                                            <AiFillEyeInvisible size={24} />
+                                        ) : (
+                                            <AiFillEye size={24} />
+                                        )}
+                                    </div>
+                                </div>
+                                {errors.length && (
+                                    <p className="text-red-500 text-sm mt-1">
+                                        {errors.length}
+                                    </p>
+                                )}
+                                {errors.capital && (
+                                    <p className="text-red-500 text-sm mt-1">
+                                        {errors.capital}
+                                    </p>
+                                )}
+                                {errors.special && (
+                                    <p className="text-red-500 text-sm mt-1">
+                                        {errors.special}
+                                    </p>
+                                )}
+                                {errors.numeric && (
+                                    <p className="text-red-500 text-sm mt-1">
+                                        {errors.numeric}
+                                    </p>
+                                )}
+                                {passwordError && (
+                                    <p className="text-red-500 text-sm mt-1">
+                                        {passwordError}
+                                    </p>
+                                )}
                             </div>
                         </div>
-
                         <div>
                             <button
                                 type="submit"

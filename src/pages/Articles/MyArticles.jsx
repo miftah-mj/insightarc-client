@@ -1,140 +1,104 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
-import { useQuery } from "@tanstack/react-query";
+import MyArticlesDataRow from "../../components/MyArticlesDataRow";
+import axios from "axios";
 import useAuth from "../../hooks/useAuth";
-import { Helmet } from "react-helmet-async";
-// import Modal from '../../components/common/Modal';
+import { Link } from "react-router-dom";
 
 const MyArticles = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
-    const navigate = useNavigate();
-    // const [articles, setArticles] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [selectedArticle, setSelectedArticle] = useState(null);
 
     const {
-        data: articles = {},
+        data: articles,
         isLoading,
         refetch,
     } = useQuery({
         queryKey: ["articles"],
         queryFn: async () => {
-            const { data } = await axiosSecure(
-                `/user-articles`
+            const response = await axios(
+                `${import.meta.env.VITE_API_URL}/articles`
             );
-            return data;
+            return response.data;
         },
     });
     console.log(articles);
 
     if (isLoading) return <LoadingSpinner />;
 
-    // const handleDelete = async (id) => {
-    //     try {
-    //         await axiosSecure.delete(`/articles/${id}`);
-    //         setArticles(articles.filter(article => article._id !== id));
-    //     } catch (error) {
-    //         console.error('Error deleting article:', error);
-    //     }
-    // };
-
-    const handleUpdate = (id) => {
-        navigate(`/update-article/${id}`);
-    };
-
-    const handleDetails = (id) => {
-        navigate(`/article/${id}`);
-    };
-
-    const handleViewReason = (article) => {
-        setSelectedArticle(article);
-    };
-
     return (
         <>
             <Helmet>
                 <title>My Articles | InsightArc</title>
             </Helmet>
-            
 
-            <div className="container mx-auto p-4">
-                <h1 className="text-2xl font-bold mb-4">My Articles</h1>
-                <table className="min-w-full bg-white">
-                    <thead>
-                        <tr>
-                            <th className="py-2"></th>
-                            <th className="py-2">Title</th>
-                            <th className="py-2">Status</th>
-                            <th className="py-2">Premium</th>
-                            <th className="py-2">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {articles.map((article, index) => (
-                            <tr key={article._id}>
-                                <td className="py-2">{index + 1}</td>
-                                <td className="py-2">{article.title}</td>
-                                <td className="py-2">
-                                    {article.status === "approved" &&
-                                        "Approved"}
-                                    {article.status === "declined" && (
-                                        <>
-                                            Declined
-                                            <button
-                                                className="ml-2 text-blue-500"
-                                                onClick={() =>
-                                                    handleViewReason(article)
-                                                }
-                                            >
-                                                View Reason
-                                            </button>
-                                        </>
-                                    )}
-                                    {article.status === "pending" && "Pending"}
-                                </td>
-                                <td className="py-2">
-                                    {article.isPremium ? "Yes" : "No"}
-                                </td>
-                                <td className="py-2">
-                                    <button
-                                        className="text-blue-500 mr-2"
-                                        onClick={() =>
-                                            handleDetails(article._id)
-                                        }
-                                    >
-                                        Details
-                                    </button>
-                                    <button
-                                        className="text-indigo-500 mr-2"
-                                        onClick={() =>
-                                            handleUpdate(article._id)
-                                        }
-                                    >
-                                        Update
-                                    </button>
-                                    <button
-                                        className="text-red-500"
-                                        onClick={() =>
-                                            handleDelete(article._id)
-                                        }
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-
-                {/* {selectedArticle && (
-                <Modal onClose={() => setSelectedArticle(null)}>
-                    <h2 className="text-xl font-bold mb-4">Decline Reason</h2>
-                    <p>{selectedArticle.declineReason}</p>
-                </Modal>
-            )} */}
+            <div className="container mx-auto px-4 sm:px-8">
+                <div className="py-8">
+                    <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                        <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                            <table className="min-w-full leading-normal">
+                                <thead>
+                                    <tr>
+                                        <th
+                                            scope="col"
+                                            className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                                        >
+                                            Serial
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                                        >
+                                            Title
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                                        >
+                                            Details
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                                        >
+                                            Status
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                                        >
+                                            Publisher
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                                        >
+                                            Premium
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                                        >
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {articles.map((article) => (
+                                        <MyArticlesDataRow
+                                            key={article._id}
+                                            article={article}
+                                            articles={articles}
+                                            refetch={refetch}
+                                        />
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     );

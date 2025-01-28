@@ -69,7 +69,7 @@ const Card = ({ article }) => {
                 <Button
                     label={"Details"}
                     disabled={isPremium && !userHasSubscription}
-                    onClick={() => navigate(`/article/${_id}`)}
+                    onClick={() => navigate(`/articles/${_id}`)}
                 />
             </div>
         </div>
