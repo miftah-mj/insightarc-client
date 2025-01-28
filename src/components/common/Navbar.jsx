@@ -21,7 +21,7 @@ const Navbar = () => {
             return response.data;
         },
     });
-    console.log(userData);
+    // console.log(userData);
     const { userHasSubscription, role } = userData || {};
     console.log("userHasSubscription", userHasSubscription);
     console.log("role", role);

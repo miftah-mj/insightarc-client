@@ -27,7 +27,7 @@ const Payment = () => {
             return response.data;
         },
     });
-    console.log(userData);
+    // console.log(userData);
     const { _id } = userData;
     console.log(_id);
     if (isLoading) return <LoadingSpinner />;

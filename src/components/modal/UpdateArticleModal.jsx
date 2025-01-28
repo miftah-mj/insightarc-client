@@ -9,7 +9,13 @@ import {
 import { Fragment } from "react";
 import UpdateArticleForm from "../Form/UpdateArticleForm";
 
-const UpdateArticleModal = ({ setIsEditModalOpen, isOpen }) => {
+const UpdateArticleModal = ({
+    setIsEditModalOpen,
+    isOpen,
+    article,
+    tags,
+    setTags,
+}) => {
     return (
         <Transition appear show={isOpen} as={Fragment}>
             <Dialog
@@ -48,7 +54,7 @@ const UpdateArticleModal = ({ setIsEditModalOpen, isOpen }) => {
                                     Update Article Info
                                 </DialogTitle>
                                 <div className="mt-2 w-full">
-                                    <UpdateArticleForm />
+                                    <UpdateArticleForm article={article} />
                                 </div>
                                 <hr className="mt-8 " />
                                 <div className="mt-2 ">

@@ -24,7 +24,7 @@ const Card = ({ article }) => {
             return response.data;
         },
     });
-    console.log(userData);
+    // console.log(userData);
     const { userHasSubscription } = userData;
 
     return (
