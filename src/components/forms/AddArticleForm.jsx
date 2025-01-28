@@ -1,6 +1,9 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import PropTypes from "prop-types";
 import { TbFidgetSpinner } from "react-icons/tb";
 import Select from "react-select";
+import LoadingSpinner from "../common/LoadingSpinner";
 
 const tagOptions = [
     { value: "technology", label: "Technology" },
@@ -17,7 +20,23 @@ const AddArticleForm = ({
     uploading,
     tags,
     setTags,
+    publisher,
+    setPublisher,
 }) => {
+    const { data: publishers = [], isLoading } = useQuery({
+        queryKey: ["publishers"],
+        queryFn: async () => {
+            const response = await axios(
+                `${import.meta.env.VITE_API_URL}/publishers`
+            );
+            return response.data;
+        },
+    });
+    console.log("publishers", publishers);
+    // const { publisherName, _id } = publishers;
+
+    if (isLoading) return <LoadingSpinner />;
+
     return (
         <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50 p-4 lg:p-0">
             <form
@@ -43,23 +62,6 @@ const AddArticleForm = ({
                                 required
                             />
                         </div>
-                        {/* Publisher */}
-                        {/* <div className="space-y-1 text-sm">
-                            <label
-                                htmlFor="publisher"
-                                className="block text-gray-600 "
-                            >
-                                Publisher
-                            </label>
-
-                            <Select
-                                options={publishers}
-                                value={publisher}
-                                onChange={setPublisher}
-                                className="w-full border border-indigo-300 focus:outline-indigo-500 rounded-md bg-white"
-                                required
-                            />
-                        </div> */}
 
                         {/* Publisher */}
                         <div className="space-y-1 text-sm">
@@ -71,13 +73,26 @@ const AddArticleForm = ({
                             </label>
                             <select
                                 required
+                                onChange={(e) => {
+                                    setPublisher({
+                                        _id: e.target.value, 
+                                        publisherName:
+                                            e.target.options[
+                                                e.target.selectedIndex
+                                            ].text,
+                                    });
+                                }}
                                 className="w-full px-4 py-3 border-indigo-300 focus:outline-indigo-500 rounded-md bg-white"
                                 name="publisher"
                             >
-                                <option value="publisher1">publisher1</option>
-                                <option value="publisher2">publisher2</option>
-                                <option value="publisher3">publisher3</option>
-                                <option value="publisher4">publisher4</option>
+                                {publishers.map((publisher) => (
+                                    <option
+                                        key={publisher._id}
+                                        value={publisher._id}
+                                    >
+                                        {publisher.publisherName}
+                                    </option>
+                                ))}
                             </select>
                         </div>
 
@@ -200,8 +215,8 @@ AddArticleForm.propTypes = {
     imageUpload: PropTypes.object,
     setImageUpload: PropTypes.func.isRequired,
     uploading: PropTypes.bool.isRequired,
-    // publisher: PropTypes.object.isRequired,
-    // setPublisher: PropTypes.func.isRequired,
+    publisher: PropTypes.object.isRequired,
+    setPublisher: PropTypes.func.isRequired,
     tags: PropTypes.array.isRequired,
     setTags: PropTypes.func.isRequired,
     isPremium: PropTypes.bool,

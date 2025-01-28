@@ -6,7 +6,7 @@ import { GiStarShuriken } from "react-icons/gi";
 const Card = ({ article }) => {
     const { _id, title, image, publisher, tags, description, isPremium } =
         article;
-    // console.log(article);
+    console.log(article);
     const navigate = useNavigate();
 
     return (
@@ -32,7 +32,7 @@ const Card = ({ article }) => {
 
             <div className="flex-grow">
                 <h3 className="font-semibold text-lg">{title}</h3>
-                <p className="font-semibold text-md">Publisher: {publisher}</p>
+                <p className="font-semibold text-md">Publisher: {publisher.publisherName}</p>
                 <p className="text-gray-700 break-words">
                     {`${description.slice(0, 50)}...`}
                 </p>
@@ -58,15 +58,17 @@ const Card = ({ article }) => {
 
 Card.propTypes = {
     article: PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-        publisher: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+        _id: PropTypes.string,
+        title: PropTypes.string,
+        image: PropTypes.string,
+        description: PropTypes.string,
+        publisher: PropTypes.shape({
+            publisherName: PropTypes.string,
+        }),
+        tags: PropTypes.arrayOf(PropTypes.string),
         isPremium: PropTypes.bool,
         // userHasSubscription: PropTypes.bool,
-    }).isRequired,
+    }),
 };
 
 export default Card;

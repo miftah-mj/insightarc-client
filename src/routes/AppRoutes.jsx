@@ -10,13 +10,15 @@ import ArticleDetails from "../pages/Articles/ArticleDetails";
 import Subscription from "../pages/Subscription/Subscription";
 import PremiumArticles from "../pages/PremiumArticles";
 import Profile from "../pages/Profile/Profile";
-import PrivateRoute from "./PrivateRoute";
 import MyArticles from "../pages/Articles/MyArticles";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Statistics from "../pages/Dashboard/Statistics";
 import AllUsers from "../pages/Dashboard/AllUsers";
 import AllArticles from "../pages/Dashboard/AllArticles";
 import AdminRoute from "./AdminRoute";
+import AddPublisher from "../pages/Dashboard/AddPublisher";
+import PrivateRoute from "./PrivateRoute";
+import Payment from "../pages/Subscription/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -46,7 +48,19 @@ export const router = createBrowserRouter([
             },
             {
                 path: "subscription",
-                element: <Subscription />,
+                element: (
+                    <PrivateRoute>
+                        <Subscription />
+                    </PrivateRoute>
+                ),
+            },
+            {
+                path: "payment",
+                element: (
+                    <PrivateRoute>
+                        <Payment />
+                    </PrivateRoute>
+                ),
             },
             {
                 path: "premium-articles",
@@ -113,6 +127,14 @@ export const router = createBrowserRouter([
                 element: (
                     <PrivateRoute>
                         <AllArticles />
+                    </PrivateRoute>
+                ),
+            },
+            {
+                path: "add-publisher",
+                element: (
+                    <PrivateRoute>
+                        <AddPublisher />
                     </PrivateRoute>
                 ),
             },

@@ -1,6 +1,8 @@
 import { FaUserCog } from "react-icons/fa";
 import MenuItem from "./MenuItem";
 import { BsGraphUp } from "react-icons/bs";
+import { RiArticleFill } from "react-icons/ri";
+import { CgOrganisation } from "react-icons/cg";
 
 const AdminMenu = () => {
     return (
@@ -16,9 +18,14 @@ const AdminMenu = () => {
                 address="all-users"
             />
             <MenuItem
-                icon={FaUserCog}
+                icon={RiArticleFill}
                 label="All Articles"
                 address="all-articles"
+            />
+            <MenuItem
+                icon={CgOrganisation}
+                label="Add Publisher"
+                address="add-publisher"
             />
         </>
     );

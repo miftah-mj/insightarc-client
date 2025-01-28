@@ -53,8 +53,9 @@ const ArticleDetails = () => {
         viewCount,
         isPremium,
         author,
-    } = article;
-    // console.log(article);
+    } = article || {};
+    console.log(article);
+    console.log(publisher.publisherName);
 
     return (
         <>
@@ -67,7 +68,7 @@ const ArticleDetails = () => {
                     <div className="flex justify-between items-center">
                         <Heading
                             title={title}
-                            subtitle={`Publisher: ${publisher}`}
+                            subtitle={`Publisher: ${publisher.publisherName}`}
                         />
                         <p>Views: {viewCount}</p>
                     </div>
@@ -99,11 +100,6 @@ const ArticleDetails = () => {
                             />
                         </div>
                         <hr className="my-6" />
-                        <div>
-                            <p className="gap-4 font-light text-neutral-500">
-                                Publisher: {publisher}
-                            </p>
-                        </div>
                         <div>
                             <p className="gap-4 font-light text-neutral-500">
                                 <div className="font-semibold text-lg">
