@@ -12,7 +12,7 @@ const Articles = () => {
         queryKey: ["articles", searchTerm],
         queryFn: async () => {
             const response = await axios(
-                `${import.meta.env.VITE_API_URL}/articles?search=${searchTerm}`
+                `${import.meta.env.VITE_API_URL}/approved-articles?search=${searchTerm}`
             );
             return response.data;
         },

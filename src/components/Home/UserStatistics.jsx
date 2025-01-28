@@ -6,7 +6,6 @@ import LoadingSpinner from "../common/LoadingSpinner";
 import Container from "../common/Container";
 
 const UserStatistics = () => {
-    // const axiosSecure = useAxiosSecure();
     const [userCounts, setUserCounts] = useState({
         allUsers: 0,
         normalUsers: 0,
@@ -23,14 +22,14 @@ const UserStatistics = () => {
                 const users = response.data;
 
                 const allUsers = users.length;
-                // const normalUsers = users.filter(
-                //     (user) => !user.userHasSubscription
-                // ).length;
-                // const premiumUsers = users.filter(
-                //     (user) => user.userHasSubscription
-                // ).length;
+                const normalUsers = users.filter(
+                    (user) => !user?.userHasSubscription
+                ).length;
+                const premiumUsers = users.filter(
+                    (user) => user?.userHasSubscription
+                ).length;
 
-                // setUserCounts({ allUsers, normalUsers, premiumUsers });
+                setUserCounts({ allUsers, normalUsers, premiumUsers });
                 setUserCounts({ allUsers });
                 setIsLoading(false);
             } catch (error) {
@@ -46,7 +45,7 @@ const UserStatistics = () => {
 
     return (
         <Container>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-white p-4 rounded-lg shadow-md text-center">
                     <h2 className="text-4xl font-bold">Users</h2>
                     <CountUp
@@ -55,7 +54,7 @@ const UserStatistics = () => {
                         className="text-3xl font-bold text-indigo-500"
                     />
                 </div>
-                {/* <div className="bg-white p-4 rounded-lg shadow-md text-center">
+                <div className="bg-white p-4 rounded-lg shadow-md text-center">
                     <h2 className="text-xl font-semibold">Normal Users</h2>
                     <CountUp
                         end={userCounts.normalUsers}
@@ -70,7 +69,7 @@ const UserStatistics = () => {
                         duration={2.5}
                         className="text-3xl font-bold"
                     />
-                </div> */}
+                </div>
             </div>
         </Container>
     );

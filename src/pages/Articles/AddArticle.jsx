@@ -54,7 +54,7 @@ const AddArticle = () => {
         try {
             await axiosSecure.post("/articles", article);
             toast.success("article added successfully!");
-            navigate("/articles");
+            navigate("/my-articles");
         } catch (err) {
             console.log(err);
         } finally {

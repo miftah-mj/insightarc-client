@@ -3,12 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import MyArticlesDataRow from "../../components/MyArticlesDataRow";
-import axios from "axios";
 import useAuth from "../../hooks/useAuth";
-import { Link } from "react-router-dom";
 
 const MyArticles = () => {
     const { user } = useAuth();
+    console.log(user);
     const axiosSecure = useAxiosSecure();
 
     const {
@@ -18,8 +17,8 @@ const MyArticles = () => {
     } = useQuery({
         queryKey: ["articles"],
         queryFn: async () => {
-            const response = await axios(
-                `${import.meta.env.VITE_API_URL}/articles`
+            const response = await axiosSecure(
+                `${import.meta.env.VITE_API_URL}/my-articles/${user?.email}`
             );
             return response.data;
         },
