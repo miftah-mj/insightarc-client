@@ -22,6 +22,10 @@ const Homepage = () => {
         navigate("/subscription");
     };
 
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
+
     return (
         <div>
             <Helmet>
@@ -35,9 +39,9 @@ const Homepage = () => {
 
             {showModal && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
-                    <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div className="bg-white p-6 rounded-lg shadow-lg text-center relative">
                         <h2 className="text-2xl font-bold mb-4">
-                            Subscribe Now!
+                            Subscribe Now! ✨🚀
                         </h2>
                         <p className="mb-4">
                             Get access to premium content by subscribing to our
@@ -48,6 +52,12 @@ const Homepage = () => {
                             className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
                         >
                             Subscribe
+                        </button>
+                        <button
+                            onClick={handleCloseModal}
+                            className="absolute top-2 right-2 px-2 py-1 bg-red-300 rounded-md hover:bg-red-400"
+                        >
+                            Cancel
                         </button>
                     </div>
                 </div>

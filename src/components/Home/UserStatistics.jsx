@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import axios from "axios";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
