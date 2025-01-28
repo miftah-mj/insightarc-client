@@ -4,10 +4,26 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import avatarImg from "../../assets/placeholder.jpg";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
     const [isOpen, setIsOpen] = useState(false);
+
+    const { data: userData = {} } = useQuery({
+        queryKey: ["userData"],
+        queryFn: async () => {
+            const response = await axios(
+                `${import.meta.env.VITE_API_URL}/users/${user?.email}`
+            );
+            return response.data;
+        },
+    });
+    console.log(userData);
+    const { userHasSubscription, role } = userData || {};
+    console.log("userHasSubscription", userHasSubscription);
+    console.log("role", role);
 
     const links = (
         <>
@@ -51,14 +67,30 @@ const Navbar = () => {
             >
                 My Articles
             </NavLink>
-            <NavLink
-                to="/premium-articles"
-                className={({ isActive }) =>
-                    `tab hover:underline ${isActive ? "text-primary" : ""}`
-                }
-            >
-                Premium Articles
-            </NavLink>
+            {userHasSubscription ? (
+                <NavLink
+                    to="/premium-articles"
+                    className={({ isActive }) =>
+                        `tab hover:underline ${isActive ? "text-primary" : ""}`
+                    }
+                >
+                    Premium Articles
+                </NavLink>
+            ) : (
+                ""
+            )}
+            {role === "admin" ? (
+                <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                        `tab hover:underline ${isActive ? "text-primary" : ""}`
+                    }
+                >
+                    Dashboard
+                </NavLink>
+            ) : (
+                ""
+            )}
         </>
     );
 
@@ -116,12 +148,6 @@ const Navbar = () => {
 
                                     {user ? (
                                         <>
-                                            <Link
-                                                to="/dashboard"
-                                                className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
-                                            >
-                                                Dashboard
-                                            </Link>
                                             <div
                                                 onClick={logOut}
                                                 className="px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer"
