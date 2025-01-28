@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import TrendingSlider from "../../components/slider/TrendingSlider";
+import AllPublishers from "../../components/Home/AllPublishers";
 
 const Homepage = () => {
     return (
@@ -9,6 +10,7 @@ const Homepage = () => {
             </Helmet>
 
             <TrendingSlider />
+            <AllPublishers />
         </div>
     );
 };

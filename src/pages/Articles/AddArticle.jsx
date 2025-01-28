@@ -2,10 +2,10 @@ import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import AddArticleForm from "../../components/forms/AddArticleForm";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { uploadImage } from "../../api/utils";
+import AddArticleForm from "../../components/Form/AddArticleForm";
 
 const AddArticle = () => {
     const { user } = useAuth();

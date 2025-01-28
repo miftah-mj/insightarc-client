@@ -1,11 +1,27 @@
-import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import Container from "../../components/common/Container";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
+import { useState } from "react";
 
 const Subscription = () => {
-    const [subscriptionPeriod, setSubscriptionPeriod] = useState("");
+    const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
+    const [subscriptionPeriod, setSubscriptionPeriod] = useState("");
+
+    const { data: subscriptions, isLoading } = useQuery({
+        queryKey: ["subscriptions"],
+        queryFn: async () => {
+            const response = await axiosSecure(
+                `${import.meta.env.VITE_API_URL}/subscriptions`
+            );
+            return response.data;
+        },
+    });
+    console.log(subscriptions);
+    if (isLoading) return <LoadingSpinner />;
 
     const handleSubscription = () => {
         // Navigate to the payment page
@@ -33,6 +49,7 @@ const Subscription = () => {
                     </p>
                 </div>
 
+                {/* Subscription form */}
                 <div className="subscription-form mt-8 max-w-md mx-auto">
                     <label
                         htmlFor="subscriptionPeriod"
@@ -48,16 +65,23 @@ const Subscription = () => {
                         required
                     >
                         <option value="" disabled>
-                            Select a period
+                            Select a subscription
                         </option>
-                        <option value="1 minute">1 minute - $1</option>
-                        <option value="5 days">5 days - $10</option>
-                        <option value="10 days">10 days - $18</option>
+                        {subscriptions.map((subscription) => (
+                            <option
+                                key={subscription._id}
+                                value={subscription.subscriptionPeriod}
+                            >
+                                {subscription.subscriptionPeriod} - $
+                                {subscription.amount}
+                            </option>
+                        ))}
                     </select>
 
                     <button
                         onClick={handleSubscription}
-                        className="w-full mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                        disabled={!subscriptionPeriod}
+                        className="w-full mt-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
                     >
                         Subscribe
                     </button>

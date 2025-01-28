@@ -1,4 +1,3 @@
-// import Container from "../../components/Shared/Container";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -44,7 +43,6 @@ const ArticleDetails = () => {
     if (isLoading) return <LoadingSpinner />;
 
     const {
-        _id,
         title,
         image,
         publisher,
@@ -72,6 +70,15 @@ const ArticleDetails = () => {
                         />
                         <p>Views: {viewCount}</p>
                     </div>
+                    {isPremium && (
+                        <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 my-4">
+                            <p className="font-semibold">Premium Article</p>
+                            <p>
+                                This is a premium article. You need to subscribe
+                                to view this article.
+                            </p>
+                        </div>
+                    )}
                     {/* Image */}
                     <div className="w-full h-72 overflow-hidden rounded-md my-8">
                         <img
@@ -100,16 +107,12 @@ const ArticleDetails = () => {
                             />
                         </div>
                         <hr className="my-6" />
-                        <div>
-                            <p className="gap-4 font-light text-neutral-500">
-                                <div className="font-semibold text-lg">
-                                    {tags.map((tag, index) => (
-                                        <span key={index} className="mr-2">
-                                            #{tag}
-                                        </span>
-                                    ))}
-                                </div>
-                            </p>
+                        <div className="font-semibold text-lg gap-4 text-neutral-500">
+                            {tags.map((tag, index) => (
+                                <span key={index} className="mr-2">
+                                    #{tag}
+                                </span>
+                            ))}
                         </div>
                     </div>
                 </div>
