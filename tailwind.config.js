@@ -6,7 +6,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                "new-rocker": ["New Rocker", "cursive"],
+                grenze: ["Grenze Gotisch", "serif"],
             },
         },
     },

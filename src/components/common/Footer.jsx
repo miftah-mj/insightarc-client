@@ -4,7 +4,7 @@ const Footer = () => {
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row justify-between items-center">
                     <div className="mb-4 md:mb-0">
-                        <h1 className="text-2xl font-new-rocker text-indigo-600 font-bold">
+                        <h1 className="text-3xl text-black font-grenze font-bold">
                             InsightArc
                         </h1>
                         <p className="text-sm">

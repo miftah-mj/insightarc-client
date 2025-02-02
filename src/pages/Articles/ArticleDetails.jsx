@@ -90,17 +90,17 @@ const ArticleDetails = () => {
 
                     <div className="md:gap-10 flex-1">
                         {/* article Info */}
-                        <div className="text-lg font-light text-neutral-500">
+                        <p className="text-lg font-light text-neutral-500  custom-first-letter custom-first-line">
                             {description}
-                        </div>
+                        </p>
                         <hr className="my-6" />
 
-                        <div className="text-xl font-semibold flex flex-row items-center gap-2">
-                            <h4>Article Writter: {author?.name}</h4>
+                        <div className="flex flex-row items-center gap-2">
+                            <h4 className="text-xl font-semibold ">
+                                Article Writter: {author?.name}
+                            </h4>
                             <img
-                                className="rounded-full"
-                                height="30"
-                                width="30"
+                                className="rounded-full w-10 h-10"
                                 alt="Avatar"
                                 referrerPolicy="no-referrer"
                                 src={author?.image}

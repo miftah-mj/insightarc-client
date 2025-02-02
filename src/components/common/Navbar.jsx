@@ -101,9 +101,14 @@ const Navbar = () => {
             <div className="max-w-screen-xl mx-auto px-4 lg:px-0 py-4">
                 <div className="flex flex-row  items-center justify-between gap-3 md:gap-0">
                     {/* Logo */}
-                    <Link to="/" className="font-new-rocker text-2xl">
-                        InsightArc
-                    </Link>
+                    <div>
+                        <Link to="/" className="font-grenze text-3xl font-bold">
+                            InsightArc
+                        </Link>
+                        <p className="text-xs">
+                            Your Arc of Knowledge and Insight
+                        </p>
+                    </div>
 
                     <div className="hidden md:flex flex-row gap-3">{links}</div>
                     {/* Dropdown Menu */}
