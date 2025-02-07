@@ -7,7 +7,7 @@ InsightArc is a platform that provides users with access to premium content thro
 -   [Features](#features)
 -   [Installation](#installation)
 -   [Usage](#usage)
--   [Admin Credentials](#admin-credentials)
+<!-- -   [Admin Credentials](#admin-credentials) -->
 -   [Live Site URL](#live-site-url)
 -   [API Endpoints](#api-endpoints)
 -   [Technologies Used](#technologies-used)
@@ -64,11 +64,11 @@ npm start
 
 3. Browse articles, view publishers, and subscribe to a plan to access premium content.
 
-## Admin Credentials
+<!-- ## Admin Credentials
 
 To access the admin panel, use the following credentials:
 
-<!-- -   **Username:** `jannat234@gmail.com`
+-   **Username:** `jannat234@gmail.com`
 -   **Password:** `123ABC#` -->
 
 ## Live Site URL
