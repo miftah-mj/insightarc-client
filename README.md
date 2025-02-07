@@ -11,8 +11,6 @@ InsightArc is a platform that provides users with access to premium content thro
 -   [Live Site URL](#live-site-url)
 -   [API Endpoints](#api-endpoints)
 -   [Technologies Used](#technologies-used)
--   [Contributing](#contributing)
--   [License](#license)
 
 ## Features
 
@@ -32,9 +30,9 @@ InsightArc is a platform that provides users with access to premium content thro
 
 1. Clone the repository:
 
-    ```bash
-    git clone https://github.com/yourusername/insightarc.git
-    ```
+```bash
+git clone https://github.com/yourusername/insightarc.git
+```
 
 ````
 
@@ -70,8 +68,8 @@ npm start
 
 To access the admin panel, use the following credentials:
 
--   **Username:** `jannat234@gmail.com`
--   **Password:** `123ABC#`
+<!-- -   **Username:** `jannat234@gmail.com`
+-   **Password:** `123ABC#` -->
 
 ## Live Site URL
 
