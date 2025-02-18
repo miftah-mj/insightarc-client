@@ -9,7 +9,7 @@ import Heading from "../../components/common/Heading";
 
 const ArticleDetails = () => {
     const { id } = useParams();
-    console.log(id);
+    // console.log(id);
     const queryClient = useQueryClient();
 
     const { data: article = {}, isLoading } = useQuery({
@@ -21,7 +21,7 @@ const ArticleDetails = () => {
             return data;
         },
     });
-    console.log(article);
+    // console.log(article);
 
     useEffect(() => {
         const updateViewCount = async () => {

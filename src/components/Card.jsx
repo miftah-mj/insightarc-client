@@ -9,7 +9,7 @@ import axios from "axios";
 const Card = ({ article }) => {
     const { _id, title, image, publisher, tags, description, isPremium } =
         article;
-    console.log(article);
+    // console.log(article);
     const navigate = useNavigate();
 
     const { user } = useAuth();

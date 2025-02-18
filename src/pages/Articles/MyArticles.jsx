@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 
 const MyArticles = () => {
     const { user } = useAuth();
-    console.log(user);
+    // console.log(user);
     const axiosSecure = useAxiosSecure();
 
     const {
@@ -23,7 +23,7 @@ const MyArticles = () => {
             return response.data;
         },
     });
-    console.log(articles);
+    // console.log(articles);
 
     if (isLoading) return <LoadingSpinner />;
 

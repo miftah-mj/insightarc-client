@@ -23,7 +23,7 @@ const AllArticles = () => {
             return response.data;
         },
     });
-    console.log(articles);
+    // console.log(articles);
 
     if (isLoading) return <LoadingSpinner />;
 

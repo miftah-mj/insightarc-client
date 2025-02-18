@@ -30,7 +30,7 @@ const Payment = () => {
     });
     // console.log(userData);
     const { _id } = userData;
-    console.log(_id);
+    // console.log(_id);
     if (isLoading) return <LoadingSpinner />;
 
     const handlePaymentSuccess = async () => {

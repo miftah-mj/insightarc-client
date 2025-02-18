@@ -13,7 +13,7 @@ const AllPublishers = () => {
             return response.data;
         },
     });
-    console.log("publishers", publishers);
+    // console.log("publishers", publishers);
 
     if (isLoading) return <LoadingSpinner />;
 

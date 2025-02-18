@@ -20,7 +20,7 @@ const AllUsers = () => {
             return data;
         },
     });
-    console.log(users);
+    // console.log(users);
 
     if (isLoading) return <LoadingSpinner />;
 

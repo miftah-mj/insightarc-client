@@ -47,7 +47,7 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         const image = form.image.files[0];
-        console.log(image);
+        // console.log(image);
 
         // Validate Password
         const passwordErrors = validatePassword(password);
@@ -72,7 +72,7 @@ const SignUp = () => {
 
             // Save username & profile photo
             await updateUserProfile(name, photoUrl);
-            console.log(result);
+            // console.log(result);
             // Save user in database
             await saveUser({ ...result.user, displayName: name, photoUrl });
 

@@ -32,7 +32,7 @@ const CheckoutForm = ({ handlePaymentSuccess }) => {
         // Send paymentMethod.id to your server (e.g., via an API call) to process the payment
         // Example: await fetch('/api/pay', { method: 'POST', body: JSON.stringify({ paymentMethodId: paymentMethod.id }) });
 
-        console.log("Payment successful:", paymentMethod);
+        // console.log("Payment successful:", paymentMethod);
         toast.success("Payment successful!!");
 
         // On successful payment

@@ -15,7 +15,7 @@ const AdminStatistics = () => {
             return response.data;
         },
     });
-    console.log("stat", stat);
+    // console.log("stat", stat);
     const { totalUsers } = stat || {};
     if (isLoading) return <LoadingSpinner />;
 

@@ -23,8 +23,8 @@ const Navbar = () => {
     });
     // console.log(userData);
     const { userHasSubscription, role } = userData || {};
-    console.log("userHasSubscription", userHasSubscription);
-    console.log("role", role);
+    // console.log("userHasSubscription", userHasSubscription);
+    // console.log("role", role);
     if (isLoading) return <LoadingSpinner />;
 
     const links = (
@@ -97,7 +97,7 @@ const Navbar = () => {
     );
 
     return (
-        <div className="border-b-2">
+        <div className="sticky top-0 z-50 backdrop-blur-md bg-white/45 border-b-2">
             <div className="max-w-screen-xl mx-auto px-4 lg:px-0 py-4">
                 <div className="flex flex-row  items-center justify-between gap-3 md:gap-0">
                     {/* Logo */}

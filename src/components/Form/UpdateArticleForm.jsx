@@ -23,7 +23,7 @@ const UpdateArticleForm = ({ article, tags, setTags }) => {
             return response.data;
         },
     });
-    console.log("publishers", publishers);
+    // console.log("publishers", publishers);
     // const { publisherName, _id } = publishers;
 
     if (isLoading) return <LoadingSpinner />;

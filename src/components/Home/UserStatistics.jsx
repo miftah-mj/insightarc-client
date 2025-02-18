@@ -15,7 +15,7 @@ const UserStatistics = () => {
             return response.data;
         },
     });
-    console.log("stat", stat);
+    // console.log("stat", stat);
     const { totalUsers, normalUsers, premiumUsers } = stat || {};
     if (isLoading) return <LoadingSpinner />;
 

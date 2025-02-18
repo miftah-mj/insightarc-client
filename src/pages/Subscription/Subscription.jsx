@@ -20,7 +20,7 @@ const Subscription = () => {
             return response.data;
         },
     });
-    console.log(subscriptions);
+    // console.log(subscriptions);
     if (isLoading) return <LoadingSpinner />;
 
     const handleSubscription = () => {

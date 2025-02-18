@@ -9,7 +9,7 @@ import DeleteModal from "./modal/DeleteModal";
 const MyArticlesDataRow = ({ articles, article, refetch }) => {
     const { title, description, status, publisher, isPremium, _id } =
         article || {};
-    console.log(article);
+    // console.log(article);
     // const [tags, setTags] = useState([]);
 
     const axiosSecure = useAxiosSecure();
@@ -57,7 +57,7 @@ const MyArticlesDataRow = ({ articles, article, refetch }) => {
     // Delete a article
     const handleDelete = async () => {
         try {
-            console.log("Deleted: ", _id);
+            // console.log("Deleted: ", _id);
             await axiosSecure.delete(`/articles/${_id}`);
             // Call refetch to update the UI
             refetch();
