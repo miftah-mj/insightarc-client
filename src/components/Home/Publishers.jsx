@@ -18,18 +18,16 @@ const Publishers = () => {
 
     return (
         <Container>
-            <h1 className="text-4xl font-bold text-center mb-8">
-                All Publishers
-            </h1>
+            <h1 className="text-4xl font-bold text-center mb-8">Publishers</h1>
             <Marquee pauseOnHover={true} className="space-x-10">
-                <div className="mt-12 flex gap-8">
+                <div className="mt-12 flex gap-6">
                     {publishers.map((publisher) => (
                         <div
                             key={publisher._id}
-                            className="bg-white shadow-lg rounded-lg overflow-hidden w-80"
+                            className="bg-white shadow-lg rounded-md overflow-hidden"
                         >
                             <img
-                                className="w-60 h-60 object-contain"
+                                className="w-60 h-48 object-contain"
                                 src={publisher.logo}
                                 alt={publisher.publisherName}
                             />

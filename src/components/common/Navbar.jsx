@@ -7,6 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "./LoadingSpinner";
+import ThemeToggle from "../ThemeToggle";
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
@@ -112,15 +113,18 @@ const Navbar = () => {
 
                     <div className="hidden md:flex flex-row gap-3">{links}</div>
                     {/* Dropdown Menu */}
-                    <div className="relative">
+                    <div className="flex gap-2 items-center relative">
+                        {/* Theme Toggle */}
+                        <ThemeToggle />
+
                         <div className="flex flex-row items-center gap-3">
                             {/* Dropdown btn */}
                             <div
                                 onClick={() => setIsOpen(!isOpen)}
-                                className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
+                                className="p-2 md:py-1 md:px-2 border border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
                             >
                                 <AiOutlineMenu />
-                                <div className="hidden md:block">
+                                <div className="">
                                     {/* Avatar */}
                                     <Link to="/profile">
                                         <img
@@ -140,7 +144,7 @@ const Navbar = () => {
                             </div>
                         </div>
                         {isOpen && (
-                            <div className="absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm z-10">
+                            <div className="absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] overflow-hidden bg-white/80 right-0 top-12 text-sm z-10">
                                 <div className="flex flex-col cursor-pointer">
                                     <div className="flex flex-col md:hidden gap-3">
                                         {links}
