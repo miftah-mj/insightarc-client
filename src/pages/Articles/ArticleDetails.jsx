@@ -52,8 +52,8 @@ const ArticleDetails = () => {
         isPremium,
         author,
     } = article || {};
-    console.log(article);
-    console.log(publisher.publisherName);
+    // console.log(article);
+    // console.log(publisher.publisherName);
 
     return (
         <>

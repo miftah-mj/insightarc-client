@@ -18,23 +18,25 @@ const LatestArticles = () => {
     if (isLoading) return <LoadingSpinner />;
 
     return (
-        <Container>
-            <h2 className="text-3xl font-bold text-gray-800 text-center">
-                Latest Articles
-            </h2>
+        <div className="bg-indigo-50 mt-12">
+            <Container>
+                <h2 className="text-3xl font-bold text-gray-800 text-center">
+                    Latest Articles
+                </h2>
 
-            {articles && articles.length > 0 ? (
-                <div className="mt-12  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    {articles.map((article) => (
-                        <Card key={article._id} article={article} />
-                    ))}
-                </div>
-            ) : (
-                <div className="text-center text-lg text-gray-500 mt-12">
-                    No articles found
-                </div>
-            )}
-        </Container>
+                {articles && articles.length > 0 ? (
+                    <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        {articles.map((article) => (
+                            <Card key={article._id} article={article} />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center text-lg text-gray-500 mt-12">
+                        No articles found
+                    </div>
+                )}
+            </Container>
+        </div>
     );
 };
 

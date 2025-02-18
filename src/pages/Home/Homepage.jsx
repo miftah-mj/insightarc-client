@@ -7,6 +7,7 @@ import UserStatistics from "../../components/Home/UserStatistics";
 import Plans from "../../components/Home/Plans";
 import LatestArticles from "../../components/Home/LatestArticles";
 import Newsletter from "../../components/Home/Newsletter";
+import Podcasts from "../../components/Home/Podcasts";
 
 const Homepage = () => {
     const [showModal, setShowModal] = useState(false);
@@ -37,6 +38,7 @@ const Homepage = () => {
             <TrendingSlider />
             <LatestArticles />
             <Publishers />
+            <Podcasts />
             <UserStatistics />
             <Plans />
             <Newsletter />

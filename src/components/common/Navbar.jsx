@@ -111,7 +111,7 @@ const Navbar = () => {
                         </p>
                     </div>
 
-                    <div className="hidden md:flex flex-row gap-3">{links}</div>
+                    {/* <div className="hidden md:flex flex-row gap-3 font-semibold">{links}</div> */}
                     {/* Dropdown Menu */}
                     <div className="flex gap-2 items-center relative">
                         {/* Theme Toggle */}
@@ -145,26 +145,26 @@ const Navbar = () => {
                         </div>
                         {isOpen && (
                             <div className="absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] overflow-hidden bg-white/80 right-0 top-12 text-sm z-10">
-                                <div className="flex flex-col cursor-pointer">
-                                    <div className="flex flex-col md:hidden gap-3">
+                                <div className="relative flex flex-col cursor-pointer">
+                                    <div className="flex flex-col space-y-3 font-semibold">
                                         {links}
                                     </div>
 
-                                    <Link
+                                    {/* <Link
                                         to="/"
                                         className="block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold"
                                     >
                                         Home
-                                    </Link>
+                                    </Link> */}
 
                                     {user ? (
                                         <>
-                                            <div
+                                            <button
                                                 onClick={logOut}
                                                 className="px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer"
                                             >
                                                 Logout
-                                            </div>
+                                            </button>
                                         </>
                                     ) : (
                                         <>
