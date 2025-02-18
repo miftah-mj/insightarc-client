@@ -6,6 +6,7 @@ import Publishers from "../../components/Home/Publishers";
 import UserStatistics from "../../components/Home/UserStatistics";
 import Plans from "../../components/Home/Plans";
 import LatestArticles from "../../components/Home/LatestArticles";
+import Newsletter from "../../components/Home/Newsletter";
 
 const Homepage = () => {
     const [showModal, setShowModal] = useState(false);
@@ -38,6 +39,7 @@ const Homepage = () => {
             <Publishers />
             <UserStatistics />
             <Plans />
+            <Newsletter />
 
             {showModal && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
