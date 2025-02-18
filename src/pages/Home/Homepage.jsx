@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import TrendingSlider from "../../components/slider/TrendingSlider";
-import AllPublishers from "../../components/Home/AllPublishers";
+import Publishers from "../../components/Home/Publishers";
 import UserStatistics from "../../components/Home/UserStatistics";
 import Plans from "../../components/Home/Plans";
 import LatestArticles from "../../components/Home/LatestArticles";
@@ -35,7 +35,7 @@ const Homepage = () => {
 
             <TrendingSlider />
             <LatestArticles />
-            <AllPublishers />
+            <Publishers />
             <UserStatistics />
             <Plans />
 

@@ -6,12 +6,13 @@ import { uploadImage } from "../../api/utils";
 const AddPublisher = () => {
     const [publisherName, setPublisherName] = useState("");
     const [logo, setLogo] = useState(null);
+    const [website, setWebsite] = useState("");
     const axiosSecure = useAxiosSecure();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!publisherName || !logo) {
+        if (!publisherName || !logo || !website) {
             toast.error("Please fill in all fields");
             return;
         }
@@ -21,10 +22,14 @@ const AddPublisher = () => {
             await axiosSecure.post("/publishers", {
                 publisherName,
                 logo: logoUrl,
+                website,
+                articlesCount: 0,
             });
             toast.success("Publisher added successfully!");
             setPublisherName("");
             setLogo(null);
+            setWebsite("");
+            e.target.reset();
         } catch (error) {
             console.error("Error adding publisher:", error);
             toast.error("Failed to add publisher");
@@ -48,6 +53,20 @@ const AddPublisher = () => {
                         required
                     />
                 </div>
+
+                <div>
+                    <label className="block text-sm font-medium text-gray-700">
+                        Website URL
+                    </label>
+                    <input
+                        type="url"
+                        value={website}
+                        onChange={(e) => setWebsite(e.target.value)}
+                        placeholder="Website URL"
+                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                    />
+                </div>
+
                 <div>
                     <label className="block text-sm font-medium text-gray-700">
                         Publisher Logo
