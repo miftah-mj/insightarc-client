@@ -5,6 +5,7 @@ import TrendingSlider from "../../components/slider/TrendingSlider";
 import AllPublishers from "../../components/Home/AllPublishers";
 import UserStatistics from "../../components/Home/UserStatistics";
 import Plans from "../../components/Home/Plans";
+import LatestArticles from "../../components/Home/LatestArticles";
 
 const Homepage = () => {
     const [showModal, setShowModal] = useState(false);
@@ -33,6 +34,7 @@ const Homepage = () => {
             </Helmet>
 
             <TrendingSlider />
+            <LatestArticles />
             <AllPublishers />
             <UserStatistics />
             <Plans />
